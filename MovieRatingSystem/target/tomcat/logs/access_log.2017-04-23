@@ -1,0 +1,5 @@
+0:0:0:0:0:0:0:1 - - [23/Apr/2017:14:41:20 -0600] "GET / HTTP/1.1" 404 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [23/Apr/2017:14:41:23 -0600] "GET /MovieRatingSystem/ HTTP/1.1" 200 52 http-bio-8080-exec-3 1003
+0:0:0:0:0:0:0:1 - - [23/Apr/2017:14:41:30 -0600] "GET /MovieRatingSystem/welcome HTTP/1.1" 404 1051 http-bio-8080-exec-4 2689
+0:0:0:0:0:0:0:1 - - [23/Apr/2017:14:42:48 -0600] "GET /MovieRatingSystem/welcome HTTP/1.1" 200 267 http-bio-8080-exec-1 3252
+0:0:0:0:0:0:0:1 - - [23/Apr/2017:14:44:07 -0600] "GET /MovieRatingSystem/welcome HTTP/1.1" 200 273 http-bio-8080-exec-1 3382

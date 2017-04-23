@@ -1,0 +1,7 @@
+MRS/Configuration/AppConfig.class
+MRS/Configuration/AppInitializer.class
+MRS/Common/HibernateInitializer.class
+MRS/Model/User.class
+MRS/Common/DBProxy.class
+MRS/Common/DBProxyInterface.class
+MRS/controllers/WelcomeController.class
