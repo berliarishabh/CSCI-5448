@@ -8,3 +8,7 @@ Project Contributors :
 Omkar Reddy Seelam, Identikey - omse6303
 Rishabh Berlia, Identikey - shgu4085
 Shivasankar Gunasekaran, Identikey - ribe3261
+
+Project Status:
+
+1. Spring MVC, MySQL, Hibernate set up complete.
