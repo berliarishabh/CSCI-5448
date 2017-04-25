@@ -21,5 +21,3 @@ CREATE TABLE `User_tbl` (
   KEY `userRoleId` (`userRoleId`),
   CONSTRAINT `user_tbl_ibfk_1` FOREIGN KEY (`userRoleId`) REFERENCES `UserRole_tbl` (`userRoleId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
-
-
