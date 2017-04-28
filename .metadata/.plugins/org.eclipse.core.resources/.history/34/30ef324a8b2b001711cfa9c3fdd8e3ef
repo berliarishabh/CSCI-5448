@@ -1,0 +1,5 @@
+package MRS.controllers;
+
+public class UserController {
+	
+}

@@ -1,0 +1,11 @@
+package MRS.Common;
+
+import MRS.Model.User;
+
+public interface DBProxyInterface {
+	
+	public boolean validateUser(String username , String password);
+//	public List<Movie> getMovies(String movieName);
+	public User getUserDetails(String username, String password);
+	
+}

@@ -1,7 +1,9 @@
-/Users/Rishabh/Documents/workspace/MovieRatingSystem/src/main/java/MRS/Configuration/AppConfig.java
-/Users/Rishabh/Documents/workspace/MovieRatingSystem/src/main/java/MRS/Model/User.java
-/Users/Rishabh/Documents/workspace/MovieRatingSystem/src/main/java/MRS/Common/HibernateInitializer.java
-/Users/Rishabh/Documents/workspace/MovieRatingSystem/src/main/java/MRS/Configuration/AppInitializer.java
-/Users/Rishabh/Documents/workspace/MovieRatingSystem/src/main/java/MRS/controllers/WelcomeController.java
-/Users/Rishabh/Documents/workspace/MovieRatingSystem/src/main/java/MRS/Common/DBProxy.java
-/Users/Rishabh/Documents/workspace/MovieRatingSystem/src/main/java/MRS/Common/DBProxyInterface.java
+C:\Users\shiva\Documents\CSCI-5448\MovieRatingSystem\src\main\java\MRS\Common\HibernateInitializer.java
+C:\Users\shiva\Documents\CSCI-5448\MovieRatingSystem\src\main\java\MRS\Configuration\AppInitializer.java
+C:\Users\shiva\Documents\CSCI-5448\MovieRatingSystem\src\main\java\MRS\Model\User.java
+C:\Users\shiva\Documents\CSCI-5448\MovieRatingSystem\src\main\java\MRS\Common\DBProxyInterface.java
+C:\Users\shiva\Documents\CSCI-5448\MovieRatingSystem\src\main\java\MRS\controllers\WelcomeController.java
+C:\Users\shiva\Documents\CSCI-5448\MovieRatingSystem\src\main\java\MRS\Model\Movie.java
+C:\Users\shiva\Documents\CSCI-5448\MovieRatingSystem\src\main\java\MRS\Common\DBProxy.java
+C:\Users\shiva\Documents\CSCI-5448\MovieRatingSystem\src\main\java\MRS\Configuration\AppConfig.java
+C:\Users\shiva\Documents\CSCI-5448\MovieRatingSystem\src\main\java\MRS\Model\Review.java

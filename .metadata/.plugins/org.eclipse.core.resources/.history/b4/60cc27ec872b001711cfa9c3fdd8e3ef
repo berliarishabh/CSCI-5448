@@ -1,0 +1,16 @@
+package MRS.Common;
+
+import java.util.List;
+
+import MRS.Model.Movie;
+import MRS.Model.Review;
+import MRS.Model.User;
+
+public interface DBProxyInterface {
+	
+	public boolean validateUser(String username , String password);
+	public Movie getMovie(String movieName);
+	public List<User> getUserDetails(String username, String password);
+	public List<Movie> getMovies(int releaseYear);
+	public List<Review> getMovieReviews(int movieId, userId);
+}
