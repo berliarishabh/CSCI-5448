@@ -47,6 +47,15 @@ public class WelcomeController
 		mv = dbProxy.getMovie("Bahubali");
 		model.addAttribute("movieName", mv.getMovieName());
 		model.addAttribute("releaseYear", mv.getReleaseYear());
+//		mv.setGenre("Horror");
+//		mv.setAggregateRating(8.5);
+//		mv.setApprovalState('A');
+//		mv.setMovieName("The Conjuring 2");
+//		mv.setNumberOfCriticsRated(10);
+//		mv.setNumberOfUsersRated(10);
+//		mv.setReleaseYear(2016);
+//		boolean res = dbProxy.addMovie(mv);
+//		System.out.println("res is " + res);
 		return "movies";	// name of the jsp file
 	}
 }

@@ -22,5 +22,6 @@
 		<property name="show_sql">true</property>
         <mapping class="MRS.Model.User" resource="User.hbm.xml"/>
         <mapping class="MRS.Model.Movie" resource="Movie.hbm.xml"/>
+        <mapping class="MRS.Model.Review" resource="Review.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
