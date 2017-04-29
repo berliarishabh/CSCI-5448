@@ -20,6 +20,7 @@
 		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
 		<!-- Echo all executed SQL to stdout -->
 		<property name="show_sql">true</property>
+		<property name="hbm2ddl.auto">update</property>
         <mapping class="MRS.Model.User" resource="User.hbm.xml"/>
         <mapping class="MRS.Model.Movie" resource="Movie.hbm.xml"/>
         <mapping class="MRS.Model.Review" resource="Review.hbm.xml"/>

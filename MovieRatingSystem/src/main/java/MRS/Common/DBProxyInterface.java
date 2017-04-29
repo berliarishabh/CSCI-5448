@@ -10,7 +10,7 @@ public interface DBProxyInterface {
 	
 	public boolean validateUser(String username , String password);
 	public Movie getMovie(String movieName);
-	public List<User> getUserDetails(String username, String password);
+	public User getUserDetails(String username, String password);
 	public List<Movie> getMovies(String genre, int releaseYear, double aggregateRating, char approvalState);
 	public List<Review> getReviews(int movieId,int userId);
 	public boolean addMovie(Movie mv);

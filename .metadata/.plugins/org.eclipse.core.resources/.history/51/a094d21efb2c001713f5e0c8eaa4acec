@@ -1,0 +1,15 @@
+package MRS.controllers;
+
+import MRS.Model.User;
+
+public class PageController implements PageControllerFactory{
+	
+	private User user;
+	
+	public PageController createPageController(User user){
+		if(user.getUserRoleId() == 1)
+		{
+			PageController 
+		}
+	}
+}

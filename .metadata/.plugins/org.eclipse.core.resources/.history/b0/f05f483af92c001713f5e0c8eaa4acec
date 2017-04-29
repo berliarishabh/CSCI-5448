@@ -1,0 +1,7 @@
+package MRS.controllers;
+
+
+
+public interface PageControllerFactory {
+	public PageController createPageController(User);
+}
