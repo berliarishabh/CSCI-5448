@@ -15,13 +15,6 @@ import MRS.Model.User;
 //@Controller
 public class UserController extends PageController{
 	
-//	private DBProxy dbProxy;
-//	
-//	public UserController()
-//	{
-//		dbProxy = new DBProxy();
-//	}
-	
 //	@PostMapping("/welcome")
 //	public String welcome(Model model, @RequestParam String name,
 //			@RequestParam String password)
@@ -39,13 +32,6 @@ public class UserController extends PageController{
 //		}
 //	}
 	
-//	public UserController(User user) {
-////		super(user);
-//		dbProxy = new DBProxy();
-//		// TODO Auto-generated constructor stub
-//	}
-
-	@Override
 	public String nameUser(Model model)
 	{
 		System.out.println("In name user UserController");

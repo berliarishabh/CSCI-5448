@@ -20,7 +20,6 @@ public class DBProxy implements DBProxyInterface {
 		return session;
 	}
 	
-	@Override
 	public boolean validateUser(String username , String password)
 	{
 		Session session = beginSession();
@@ -28,17 +27,16 @@ public class DBProxy implements DBProxyInterface {
 		Query query = session.createQuery(queried);
 		query.setParameter("username", username);
 		query.setParameter("password", password);
-//		System.out.println("user " + username + " and pwd " + password);
-		User ls = (User)query.getSingleResult();
+		@SuppressWarnings("unchecked")
+		List<User>ls = (List<User>)query.getResultList();
 		session.close();
-		if(ls==null)
+		if(ls==null || ls.isEmpty())
 		{
 			return false;
 		}
 		return true;
 	}
 
-	@Override
 	public User getUserDetails(String username, String password)
 	{
 		Session session = beginSession();
@@ -51,7 +49,6 @@ public class DBProxy implements DBProxyInterface {
 		return ls;
 	}
 	
-	@Override
 	public Movie getMovie(String movieName)
 	{
 		Session session = beginSession();
@@ -63,7 +60,6 @@ public class DBProxy implements DBProxyInterface {
 		return mv;
 	}
 	
-	@Override
 	public List<Movie> getMovies(String genre, int releaseYear, double aggregateRating, char approvalState)
 	{
 		Session session = beginSession();
@@ -103,7 +99,6 @@ public class DBProxy implements DBProxyInterface {
 		return mv;
 	}
 	
-	@Override
 	public List<Review> getReviews(int movieId, int userId)
 	{
 		Session session = beginSession();
@@ -131,7 +126,6 @@ public class DBProxy implements DBProxyInterface {
 		return rv;
 	}
 	
-	@Override
 	public boolean addMovie(Movie mv)
 	{
 		Session session = beginSession();
@@ -149,7 +143,6 @@ public class DBProxy implements DBProxyInterface {
 		return true;
 	}
 	
-	@Override
 	public boolean addReview(Review rv)
 	{
 		Session session = beginSession();
@@ -160,6 +153,23 @@ public class DBProxy implements DBProxyInterface {
 		}
 		catch(Exception e){
 			System.out.println("Adding Review - exception is " + e.getMessage());
+			session.close();
+			return false;
+		}
+		session.close();
+		return true;
+	}
+	
+	public boolean addUser(User user)
+	{
+		Session session = beginSession();
+		Transaction tx = session.beginTransaction();
+		try{
+			session.save(user);
+			tx.commit();
+		}
+		catch(Exception e){
+			System.out.println("Adding User - exception is " + e.getMessage());
 			session.close();
 			return false;
 		}

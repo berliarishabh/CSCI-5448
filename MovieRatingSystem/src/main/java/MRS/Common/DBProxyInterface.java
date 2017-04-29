@@ -15,4 +15,5 @@ public interface DBProxyInterface {
 	public List<Review> getReviews(int movieId,int userId);
 	public boolean addMovie(Movie mv);
 	public boolean addReview(Review rv);
+	public boolean addUser(User user);
 }

@@ -12,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 //import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+//@RequestMapping("/login")
 public class LoginController {
 	private DBProxy dbProxy;
 	private LoginController()
@@ -27,21 +29,19 @@ public class LoginController {
 			@RequestParam String password)
 	{
 		Boolean result = false;
-		System.out.println("in login function");
 		result= dbProxy.validateUser(name, password);
-		model.addAttribute("firstName", name);
 		String retVal = "";
 		if(result == true)
 		{
 			User user = dbProxy.getUserDetails(name, password);
-			System.out.println("Name of user is " + user.getName());
 			PageController pc = new PageController();
 			pc.createPageController(user);
-			retVal = "welcomeMessage";	// name of the jsp file
+			retVal = "redirect:" + "/user";	// name of the jsp file
 		}
 		else
 		{
-			retVal = "movies";
+			model.addAttribute("errorMessage", "Invalid Credentials");
+			retVal = "index";
 		}
 		return retVal;
 	}
