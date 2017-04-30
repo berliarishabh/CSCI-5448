@@ -32,7 +32,10 @@ CREATE TABLE `User_tbl` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
 
 insert into user_tbl(userRoleId, name, password, username, emailAddress)
-values(1, 'Rishabh', 'Huddar', 'ribe3261', 'ribe3261@colorado.edu');
+values(4, 'Rishabh', 'Huddar', 'ribe3261', 'ribe3261@colorado.edu');
+
+insert into user_tbl(userRoleId, name, password, username, emailAddress)
+values(1, 'Shiva', 'sck', 'shgu4085', 'shgu4085@colorado.edu');
 
 SELECT * FROM USER_TBL;
 

@@ -8,10 +8,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
 
+import MRS.Common.DBProxy;
 //import MRS.Common.DBProxy;
 import MRS.Model.Movie;
 
 public class ModeratorController extends PageController{
+	
+	private DBProxy dbProxy;
+	public ModeratorController(){
+		dbProxy = new DBProxy();
+	}
+	
 	public String nameUser(Model model)
 	{
 		System.out.println("In name user ModeratorController");
@@ -25,8 +32,9 @@ public class ModeratorController extends PageController{
 	{
 		List<Movie> mv;
 		mv = dbProxy.getMovies("", 0, 0, 'A');
-		model.addAttribute("movieName", mv.get(1).getMovieName());
-		model.addAttribute("releaseYear", mv.get(0).getReleaseYear());
+		model.addAttribute("moviesList", mv);
+//		model.addAttribute("movieName", mv.get(1).getMovieName());
+//		model.addAttribute("releaseYear", mv.get(0).getReleaseYear());
 		return "movies";	// name of the jsp file
 	}
 }

@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
 
+import MRS.Common.DBProxy;
 //import MRS.Common.DBProxy;
 import MRS.Model.Movie;
-import MRS.Model.User;
+//import MRS.Model.User;
 
 //@Controller
 public class UserController extends PageController{
@@ -31,6 +32,10 @@ public class UserController extends PageController{
 //			return "movies";
 //		}
 //	}
+	private DBProxy dbProxy;
+	public UserController(){
+		dbProxy = new DBProxy();
+	}
 	
 	public String nameUser(Model model)
 	{

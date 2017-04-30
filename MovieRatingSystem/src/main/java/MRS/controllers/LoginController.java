@@ -30,12 +30,18 @@ public class LoginController {
 	{
 		Boolean result = false;
 		result= dbProxy.validateUser(name, password);
+		System.out.println("validated user is " + result);
 		String retVal = "";
 		if(result == true)
 		{
 			User user = dbProxy.getUserDetails(name, password);
-			PageController pc = new PageController();
-			pc.createPageController(user);
+			String page = PageControllerFactory.createPageController(user);
+			if(page == "")
+			{
+				System.out.println("Failed to create pageController");
+				model.addAttribute("errorMessage", "Invalid Credentials");
+				return "joinus";
+			}
 			retVal = "redirect:" + "/user";	// name of the jsp file
 		}
 		else

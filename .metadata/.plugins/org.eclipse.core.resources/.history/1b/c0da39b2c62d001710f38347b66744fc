@@ -1,0 +1,8 @@
+package MRS.controllers;
+
+import MRS.Model.User;
+
+public class PageControllerFactory {
+//	public void createPageController(User user);
+	
+}

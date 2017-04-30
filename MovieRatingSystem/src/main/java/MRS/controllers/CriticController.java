@@ -8,11 +8,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
 
+import MRS.Common.DBProxy;
 //import MRS.Common.DBProxy;
 import MRS.Model.Movie;
 
 //@Controller
 public class CriticController extends PageController{
+	
+	private DBProxy dbProxy;
+	public CriticController(){
+		dbProxy = new DBProxy();
+	}
 	
 	public String nameUser(Model model)
 	{
@@ -27,8 +33,7 @@ public class CriticController extends PageController{
 	{
 		List<Movie> mv;
 		mv = dbProxy.getMovies("", 0, 0, 'A');
-		model.addAttribute("movieName", mv.get(1).getMovieName());
-		model.addAttribute("releaseYear", mv.get(0).getReleaseYear());
+		model.addAttribute("moviesList", mv);
 		return "movies";	// name of the jsp file
 	}
 
