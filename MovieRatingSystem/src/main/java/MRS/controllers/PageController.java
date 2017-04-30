@@ -10,7 +10,7 @@ import MRS.Model.User;
 @Controller
 public class PageController implements PageControllerFactory{
 	
-	protected User user;
+	static protected User user;
 	static private PageController pc = null;
 	protected DBProxy dbProxy;
 	
@@ -22,22 +22,24 @@ public class PageController implements PageControllerFactory{
 		this.setUser(user);
 		if(user.getUserRoleId() == 4)
 		{
-			System.out.println("Created userController");
+//			System.out.println("Created UserController");
 			pc = new UserController(); 
 		}
-//		else if(user.getUserRoleId() == 3)
-//		{
-//			return new CriticController(); 
-//		}
-//		else if(user.getUserRoleId() == 2)
-//		{
-//			return new ModeratorController(); 
-//		}
-//		else if(user.getUserRoleId() == 1)
-//		{
-//			return new AdminController(); 
-//		}
-//		return null;
+		else if(user.getUserRoleId() == 3)
+		{
+//			System.out.println("Created CriticController");
+			pc = new CriticController(); 
+		}
+		else if(user.getUserRoleId() == 2)
+		{
+//			System.out.println("Created CriticController");
+			pc = new ModeratorController();  
+		}
+		else if(user.getUserRoleId() == 1)
+		{
+//			System.out.println("Created CriticController");
+			pc = new AdminController();  
+		}
 	}
 
 	public User getUser() {
@@ -45,7 +47,7 @@ public class PageController implements PageControllerFactory{
 	}
 
 	public void setUser(User user) {
-		this.user = user;
+		PageController.user = user;
 	}
 	
 	@GetMapping("/user")

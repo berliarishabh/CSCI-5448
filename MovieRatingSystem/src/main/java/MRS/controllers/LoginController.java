@@ -41,7 +41,7 @@ public class LoginController {
 		else
 		{
 			model.addAttribute("errorMessage", "Invalid Credentials");
-			retVal = "index";
+			retVal = "joinus";
 		}
 		return retVal;
 	}

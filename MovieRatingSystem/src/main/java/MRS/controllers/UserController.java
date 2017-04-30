@@ -35,7 +35,7 @@ public class UserController extends PageController{
 	public String nameUser(Model model)
 	{
 		System.out.println("In name user UserController");
-		User user = dbProxy.getUserDetails("ribe3261", "Huddar");;
+//		User user = dbProxy.getUserDetails("ribe3261", "Huddar");
 		String result = user.getName();
 		model.addAttribute("firstName", result);
 		return "welcomeMessage";	// name of the jsp file
