@@ -42,7 +42,7 @@ public class LoginController {
 				model.addAttribute("errorMessage", "Invalid Credentials");
 				return "joinus";
 			}
-			retVal = "redirect:" + "/user";	// name of the jsp file
+			retVal = "redirect:" + "/movies";	// name of the jsp file
 		}
 		else
 		{

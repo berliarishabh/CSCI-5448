@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import MRS.Common.DBProxy;
 //import MRS.Common.DBProxy;
@@ -54,6 +55,16 @@ public class UserController extends PageController{
 		model.addAttribute("movieName", mv.get(1).getMovieName());
 		model.addAttribute("releaseYear", mv.get(0).getReleaseYear());
 		return "movies";	// name of the jsp file
+	}
+	
+	@GetMapping("/movies")
+	public @ResponseBody List<Movie> movies(Model model)
+	{
+		List<Movie> mv;
+		mv = dbProxy.getMovies("", 0, 0, 'A');
+//		model.addAttribute("movieName", mv.get(1).getMovieName());
+//		model.addAttribute("releaseYear", mv.get(0).getReleaseYear());
+		return mv;	// name of the jsp file
 	}
 
 //	@Override

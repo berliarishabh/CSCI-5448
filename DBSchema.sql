@@ -38,6 +38,7 @@ insert into user_tbl(userRoleId, name, password, username, emailAddress)
 values(1, 'Shiva', 'sck', 'shgu4085', 'shgu4085@colorado.edu');
 
 SELECT * FROM USER_TBL;
+SELECT * FROM User_tbl;
 
 DROP TABLE USER_TBL;
 
@@ -56,6 +57,9 @@ CREATE TABLE `Movie_tbl` (
 
 insert into movie_tbl(movieName, releaseYear, genre, aggregateRating, numberOfUsersRated, numberOfCriticsRated, approvalState)
 values('Bahubali', 2015, 'Fantasy/Drama', 8.3, 100, 100, 'A');
+
+insert into movie_tbl(movieName, releaseYear, genre, aggregateRating, numberOfUsersRated, numberOfCriticsRated, approvalState)
+values('Bahubali 2', 2017, 'Fantasy/Drama', 9.3, 100, 100, 'A');
 
 SELECT * FROM MOVIE_TBL;
 
