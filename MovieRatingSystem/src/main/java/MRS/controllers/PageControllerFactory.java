@@ -30,7 +30,7 @@ public class PageControllerFactory {
 			PageController.setPc(new AdminController());
 			page = "/admin";
 		}
-		PageController.setUser(user);
+//		PageController.setUser(user);
 		return page;
 	}
 }

@@ -1,25 +1,25 @@
 package MRS.controllers;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+//import java.util.HashMap;
+//import java.util.List;
+//import java.util.Map;
 
 //import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+//import org.springframework.web.bind.annotation.ResponseBody;
 
-import MRS.Model.Movie;
+//import MRS.Model.Movie;
 //import MRS.Common.DBProxy;
 //import MRS.Model.Movie;
-import MRS.Model.User;
+//import MRS.Model.User;
 
 @Controller
 public class PageController{
 	
-	static protected User user;
+//	static protected User user;
 	static private PageController pc = null;
 //	protected DBProxy dbProxy;
 	
@@ -56,12 +56,12 @@ public class PageController{
 //		}
 //	}
 
-	public static User getUser() {
-		return user;
-	}
-	public static void setUser(User user) {
-		PageController.user = user;
-	}
+//	public static User getUser() {
+//		return user;
+//	}
+//	public static void setUser(User user) {
+//		PageController.user = user;
+//	}
 	public static PageController getPc() {
 		return pc;
 	}
@@ -77,25 +77,25 @@ public class PageController{
 		return res;
 	}
 	
-	@GetMapping("/movies")
-	public @ResponseBody Map<String, List<Movie>> moviess(Model model)
-	{
-		Map<String, List<Movie>> map = new HashMap<String, List<Movie>>();
-//		Movie mv = new Movie();
-//		mv.setAggregateRating(7.4);
-//		mv.setApprovalState('A');
-//		mv.setGenre("Horror");
-//		mv.setMovieName("Insidious");
-//		mv.setNumberOfCriticsRated(99);
-//		mv.setNumberOfUsersRated(99);
-//		mv.setReleaseYear(2011);
-		List<Movie> mv = getPc().movies(model);
-		map.put("movieList", mv);
-		return map;	// name of the jsp file
-	}
+//	@GetMapping("/movies")
+//	public @ResponseBody Map<String, List<Movie>> moviess(Model model)
+//	{
+//		Map<String, List<Movie>> map = new HashMap<String, List<Movie>>();
+////		Movie mv = new Movie();
+////		mv.setAggregateRating(7.4);
+////		mv.setApprovalState('A');
+////		mv.setGenre("Horror");
+////		mv.setMovieName("Insidious");
+////		mv.setNumberOfCriticsRated(99);
+////		mv.setNumberOfUsersRated(99);
+////		mv.setReleaseYear(2011);
+//		List<Movie> mv = getPc().movies(model);
+//		map.put("movieList", mv);
+//		return map;	// name of the jsp file
+//	}
 	
-	public List<Movie> movies(Model model)
-	{
-		return null;
-	}
+//	public List<Movie> movies(Model model)
+//	{
+//		return null;
+//	}
 }

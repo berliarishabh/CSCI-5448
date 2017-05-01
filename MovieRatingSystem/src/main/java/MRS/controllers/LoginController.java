@@ -19,9 +19,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 //@RequestMapping("/login")
 public class LoginController {
 	private DBProxy dbProxy;
+	private static User user = null;
+	private boolean loginState = false;
+	
 	private LoginController()
 	{
 		dbProxy = new DBProxy();
+	}
+	
+	public static User getUser() {
+		return user;
+	}
+
+	public static void setUser(User user) {
+		LoginController.user = user;
+	}
+
+	public void setLoginState(boolean loginState) {
+		this.loginState = loginState;
+	}
+	
+	public static boolean isLoggedIn()
+	{
+		return loginState;
 	}
 	
 	@PostMapping("/login")
@@ -34,7 +54,7 @@ public class LoginController {
 		String retVal = "";
 		if(result == true)
 		{
-			User user = dbProxy.getUserDetails(name, password);
+			LoginController.setUser(dbProxy.getUserDetails(name, password));
 			String page = PageControllerFactory.createPageController(user);
 			if(page == "")
 			{
@@ -42,11 +62,13 @@ public class LoginController {
 				model.addAttribute("errorMessage", "Invalid Credentials");
 				return "joinus";
 			}
+			this.setLoginState(true);
 			retVal = "redirect:" + "/movies";	// name of the jsp file
 		}
 		else
 		{
 			model.addAttribute("errorMessage", "Invalid Credentials");
+			this.setLoginState(false);
 			retVal = "joinus";
 		}
 		return retVal;
