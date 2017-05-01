@@ -51,15 +51,16 @@ CREATE TABLE `Movie_tbl` (
   `numberOfUsersRated` int(5) DEFAULT NULL,
   `numberOfCriticsRated` int(5) DEFAULT NULL,
   `approvalState` varchar(2) DEFAULT NULL,
+  `imageLocation` varchar(100) DEFAULT NULL,
   
   PRIMARY KEY (`movieId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
-insert into movie_tbl(movieName, releaseYear, genre, aggregateRating, numberOfUsersRated, numberOfCriticsRated, approvalState)
-values('Bahubali', 2015, 'Fantasy/Drama', 8.3, 100, 100, 'A');
+insert into movie_tbl(movieName, releaseYear, genre, aggregateRating, numberOfUsersRated, numberOfCriticsRated, approvalState,imageLocation)
+values('Bahubali', 2015, 'Fantasy/Drama', 8.3, 100, 100, 'A','dummy/Bahubali.jpeg');
 
-insert into movie_tbl(movieName, releaseYear, genre, aggregateRating, numberOfUsersRated, numberOfCriticsRated, approvalState)
-values('Bahubali 2', 2017, 'Fantasy/Drama', 9.3, 100, 100, 'A');
+insert into movie_tbl(movieName, releaseYear, genre, aggregateRating, numberOfUsersRated, numberOfCriticsRated, approvalState,imageLocation)
+values('Bahubali 2', 2017, 'Fantasy/Drama', 9.3, 100, 100, 'A','dummy/Bahubali_2.jpeg');
 
 SELECT * FROM MOVIE_TBL;
 

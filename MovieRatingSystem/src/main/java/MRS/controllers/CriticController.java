@@ -28,13 +28,13 @@ public class CriticController extends PageController{
 		return "welcomeMessage";	// name of the jsp file
 	}
 	
-	@GetMapping("/movie")
-	public String movie(Model model)
-	{
-		List<Movie> mv;
-		mv = dbProxy.getMovies("", 0, 0, 'A');
-		model.addAttribute("moviesList", mv);
-		return "movies";	// name of the jsp file
-	}
+//	@GetMapping("/movie")
+//	public String movie(Model model)
+//	{
+//		List<Movie> mv;
+//		mv = dbProxy.getMovies("", 0, 0, 'A');
+//		model.addAttribute("moviesList", mv);
+//		return "movies";	// name of the jsp file
+//	}
 
 }

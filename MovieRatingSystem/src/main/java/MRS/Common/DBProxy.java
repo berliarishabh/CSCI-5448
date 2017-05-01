@@ -7,6 +7,7 @@ import java.util.List;
 import org.hibernate.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.format.number.money.CurrencyUnitFormatter;
 
 import MRS.Model.*;
 
@@ -114,6 +115,8 @@ public class DBProxy implements DBProxyInterface {
 				checkConditions += " and ";
 			checkConditions += "userId = :userId";
 		}
+		if(checkConditions != "")
+			queried += " where ";
 		queried += checkConditions;
 		Query query = session.createQuery(queried);
 		if(movieId != 0)
@@ -129,6 +132,9 @@ public class DBProxy implements DBProxyInterface {
 	public boolean addMovie(Movie mv)
 	{
 		Session session = beginSession();
+		mv.setNumberOfCriticsRated(0);
+		mv.setNumberOfUsersRated(0);
+		mv.setAggregateRating(0);
 		Transaction tx = session.beginTransaction();
 		try{
 			session.save(mv);
@@ -157,6 +163,7 @@ public class DBProxy implements DBProxyInterface {
 			return false;
 		}
 		session.close();
+		this.updateRating(rv);
 		return true;
 	}
 	
@@ -177,5 +184,96 @@ public class DBProxy implements DBProxyInterface {
 		return true;
 	}
 	
+	public boolean updateMovie(Movie mv)
+	{
+		Session session = beginSession();
+		Transaction tx = session.beginTransaction();
+		try{
+			session.update(mv);
+			tx.commit();
+		}
+		catch(Exception e){
+			System.out.println("Adding User - exception is " + e.getMessage());
+			session.close();
+			return false;
+		}
+		session.close();
+		return true;
+//		Session session = beginSession();
+//		String queried = "UPDATE table_name set field1=:f1 where movieId=:movieId";
+//		Query query = session.createQuery(queried);
+//		query.setParameter("movieId", movieId);
+//		@SuppressWarnings("unchecked")
+//		List<Review> rv= (List<Review>)query.getResultList();
+//		session.close();
+//		return rv;
+	}
+	
+	public boolean updateRating(Review rv)
+	{
+		Session session = beginSession();
+		String queried = "from Movie where movieId = :movieId";
+		Query query = session.createQuery(queried);
+		query.setParameter("movieId", rv.getMovieId());
+		
+		@SuppressWarnings("unchecked")
+		List<Movie> mvLs= (List<Movie>)query.getResultList();
+		Movie mv = null;
+		if((mvLs == null) || mvLs.isEmpty())
+				mv = mvLs.get(0);
+
+		double newRating = rv.getRating();
+		double currRating = mv.getAggregateRating();
+		int numOfUsers = mv.getNumberOfUsersRated();
+		int numOfCritics = mv.getNumberOfUsersRated();
+		double newRatingWeight = newRating;	// this will be weighted
+
+//		currRating = (currRating * (numOfCritics + numOfUsers));
+//		queried = "from User where userId = :userId";
+//		query = session.createQuery(queried);
+//		query.setParameter("userId", rv.getUserId());
+//		User user= (User)query.getResultList().get(0);
+//		if(user.getUserRoleId() == 4)
+//		{
+//			newRating += currRating; 
+//			numOfUsers++;
+//			mv.setNumberOfUsersRated(numOfUsers);
+//		}
+//		else if(user.getUserRoleId()==3)
+//		{
+//			newRating += (2*currRating);
+//			numOfCritics++;
+//			mv.setNumberOfCriticsRated(numOfCritics);
+//		}
+//		session.close();
+//		newRating = newRating/(numOfCritics + numOfUsers);
+//		mv.setAggregateRating(newRating);
+//		this.updateMovie(mv);
+//		return true;
+		
+		queried = "from User where userId = :userId";
+		query = session.createQuery(queried);
+		query.setParameter("userId", rv.getUserId());
+		User user= (User)query.getResultList().get(0);
+		double currWeightedSum 		= currRating * ((numOfCritics * 0.6) + (numOfUsers * 0.4));
+		if(user.getUserRoleId() == 4)
+		{
+			newRatingWeight = newRating * (0.4);
+			numOfUsers++;
+			mv.setNumberOfUsersRated(numOfUsers);
+		}
+		else if(user.getUserRoleId()==3)
+		{
+			newRatingWeight = newRating * (0.6);
+			numOfCritics++;
+			mv.setNumberOfCriticsRated(numOfCritics);
+		}
+		double newAggregateRating	= (currWeightedSum + newRatingWeight) / ((numOfCritics * 0.6) + (numOfUsers * 0.4));
+		session.close();
+		mv.setAggregateRating(newAggregateRating);
+		this.updateMovie(mv);
+		return true;
+
+	}
 	
 }

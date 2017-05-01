@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController {
 	private DBProxy dbProxy;
 	private static User user = null;
-	private boolean loginState = false;
+	private static boolean loginState = false;
 	
 	private LoginController()
 	{
@@ -36,7 +36,7 @@ public class LoginController {
 	}
 
 	public void setLoginState(boolean loginState) {
-		this.loginState = loginState;
+		LoginController.loginState = loginState;
 	}
 	
 	public static boolean isLoggedIn()
@@ -63,7 +63,7 @@ public class LoginController {
 				return "joinus";
 			}
 			this.setLoginState(true);
-			retVal = "redirect:" + "/movies";	// name of the jsp file
+			retVal = "redirect:" + "/review.html";	// name of the jsp file
 		}
 		else
 		{
