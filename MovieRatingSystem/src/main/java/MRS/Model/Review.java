@@ -19,13 +19,14 @@ public class Review {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "reviewId")
 	private int reviewId;
-
-	public Review(double rating, String comment, int userId, int movieId) {
-		this.rating = rating;
-		this.comment = comment;
-		this.userId = userId;
-		this.movieId = movieId;
-		this.flag    = false;
+	
+	public void setElements(double rating, String comment, int userId, int movieId)
+	{
+		this.setRating(rating);
+		this.setComment(comment);
+		this.setUserId(userId);
+		this.setMovieId(movieId);
+		this.setFlag(false);
 	}
 
 	@Column(name = "rating")

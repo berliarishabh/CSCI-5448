@@ -102,7 +102,7 @@ public class Movie {
 		this.approvalState = approvalState;
 	}
 	
-	public Movie(String mvName, int rYear, String genre, double aggRating, String imgLoc)
+	public void setElements(String mvName, int rYear, String genre, double aggRating, String imgLoc)
 	{
 		this.setAggregateRating(aggRating);
 		this.setApprovalState('P');

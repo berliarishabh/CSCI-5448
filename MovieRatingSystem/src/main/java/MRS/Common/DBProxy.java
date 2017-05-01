@@ -7,7 +7,7 @@ import java.util.List;
 import org.hibernate.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.format.number.money.CurrencyUnitFormatter;
+//import org.springframework.format.number.money.CurrencyUnitFormatter;
 
 import MRS.Model.*;
 
@@ -103,7 +103,7 @@ public class DBProxy implements DBProxyInterface {
 	public List<Review> getReviews(int movieId, int userId)
 	{
 		Session session = beginSession();
-		String queried = "from Review where movieId = :movieId";
+		String queried = "from Review";
 		String checkConditions = new String("");
 		if(movieId != 0)
 		{
@@ -123,6 +123,7 @@ public class DBProxy implements DBProxyInterface {
 			query.setParameter("movieId", movieId);
 		if(userId != 0)
 			query.setParameter("userId", userId);
+		System.out.println("");
 		@SuppressWarnings("unchecked")
 		List<Review> rv= (List<Review>)query.getResultList();
 		session.close();
@@ -199,63 +200,35 @@ public class DBProxy implements DBProxyInterface {
 		}
 		session.close();
 		return true;
-//		Session session = beginSession();
-//		String queried = "UPDATE table_name set field1=:f1 where movieId=:movieId";
-//		Query query = session.createQuery(queried);
-//		query.setParameter("movieId", movieId);
-//		@SuppressWarnings("unchecked")
-//		List<Review> rv= (List<Review>)query.getResultList();
-//		session.close();
-//		return rv;
 	}
 	
 	public boolean updateRating(Review rv)
 	{
 		Session session = beginSession();
 		String queried = "from Movie where movieId = :movieId";
+		System.out.println("rv.getMovieId() is " + rv.getMovieId());
 		Query query = session.createQuery(queried);
 		query.setParameter("movieId", rv.getMovieId());
-		
 		@SuppressWarnings("unchecked")
 		List<Movie> mvLs= (List<Movie>)query.getResultList();
 		Movie mv = null;
-		if((mvLs == null) || mvLs.isEmpty())
+		if(!mvLs.isEmpty())
 				mv = mvLs.get(0);
-
+		else
+			return false;
 		double newRating = rv.getRating();
 		double currRating = mv.getAggregateRating();
 		int numOfUsers = mv.getNumberOfUsersRated();
 		int numOfCritics = mv.getNumberOfUsersRated();
 		double newRatingWeight = newRating;	// this will be weighted
-
-//		currRating = (currRating * (numOfCritics + numOfUsers));
-//		queried = "from User where userId = :userId";
-//		query = session.createQuery(queried);
-//		query.setParameter("userId", rv.getUserId());
-//		User user= (User)query.getResultList().get(0);
-//		if(user.getUserRoleId() == 4)
-//		{
-//			newRating += currRating; 
-//			numOfUsers++;
-//			mv.setNumberOfUsersRated(numOfUsers);
-//		}
-//		else if(user.getUserRoleId()==3)
-//		{
-//			newRating += (2*currRating);
-//			numOfCritics++;
-//			mv.setNumberOfCriticsRated(numOfCritics);
-//		}
-//		session.close();
-//		newRating = newRating/(numOfCritics + numOfUsers);
-//		mv.setAggregateRating(newRating);
-//		this.updateMovie(mv);
-//		return true;
 		
 		queried = "from User where userId = :userId";
 		query = session.createQuery(queried);
 		query.setParameter("userId", rv.getUserId());
 		User user= (User)query.getResultList().get(0);
-		double currWeightedSum 		= currRating * ((numOfCritics * 0.6) + (numOfUsers * 0.4));
+		session.close();
+		double currWeightedSum = currRating * ((numOfCritics * 0.6) + (numOfUsers * 0.4));
+		System.out.println("currWeightedSum is " + currWeightedSum);
 		if(user.getUserRoleId() == 4)
 		{
 			newRatingWeight = newRating * (0.4);
@@ -269,7 +242,7 @@ public class DBProxy implements DBProxyInterface {
 			mv.setNumberOfCriticsRated(numOfCritics);
 		}
 		double newAggregateRating	= (currWeightedSum + newRatingWeight) / ((numOfCritics * 0.6) + (numOfUsers * 0.4));
-		session.close();
+		System.out.println("newAggRating is " + newAggregateRating);
 		mv.setAggregateRating(newAggregateRating);
 		this.updateMovie(mv);
 		return true;
