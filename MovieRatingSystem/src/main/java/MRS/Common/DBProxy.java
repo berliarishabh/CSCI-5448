@@ -188,6 +188,23 @@ public class DBProxy implements DBProxyInterface {
 		return true;
 	}
 	
+	public boolean updateReview(Review rv)
+	{
+		Session session = beginSession();
+		Transaction tx = session.beginTransaction();
+		try{
+			session.update(rv);
+			tx.commit();
+		}
+		catch(Exception e){
+			System.out.println("Updating review - exception is " + e.getMessage());
+			session.close();
+			return false;
+		}
+		session.close();
+		return true;		
+	}
+	
 	public boolean addUser(User user)
 	{
 		Session session = beginSession();
@@ -214,7 +231,7 @@ public class DBProxy implements DBProxyInterface {
 			tx.commit();
 		}
 		catch(Exception e){
-			System.out.println("Adding User - exception is " + e.getMessage());
+			System.out.println("Updating movie - exception is " + e.getMessage());
 			session.close();
 			return false;
 		}

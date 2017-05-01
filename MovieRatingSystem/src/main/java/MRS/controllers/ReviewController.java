@@ -100,7 +100,8 @@ public class ReviewController {
 
 	// deleting a flagged review; Only Moderator and Admin can do this
 	@RequestMapping("/deleteflaggedreview")
-	public String deleteFlaggedReview(Model model, @RequestParam String movieIdStr, @RequestParam String userIdStr) {
+	public String deleteFlaggedReview(Model model, 
+			@RequestParam String movieIdStr, @RequestParam String userIdStr) {
 
 		String retval = "joinus";
 
@@ -112,7 +113,7 @@ public class ReviewController {
 
 		if (LoginController.isLoggedIn() == true) {				// check if the user is logged in
 
-			// check if the user with appropriate privileges is logged in (not necessary)
+			// check if the user with appropriate privileges is logged in
 			if ((PageController.user.getUserRoleId() == 1)
 					|| (PageController.user.getUserRoleId() == 2))
 			{
@@ -137,16 +138,22 @@ public class ReviewController {
 	}
 
 	@RequestMapping("/flagreview")
-	public String flagReview(Model model, @RequestParam String movieIdStr, 
-			@RequestParam String userIdStr, @RequestParam String commentIdStr) {
+	public String flagReview(Model model, 
+			@RequestParam String movieIdStr, @RequestParam String userIdStr) {
 		
 		String retval = "review";
 		
 		if (LoginController.isLoggedIn() == true) {				// check if the user is logged in
+		
+			int movieId = Integer.parseInt(movieIdStr);
+			int userId = Integer.parseInt(userIdStr);
 
-			// TODO: Need to have a function in the DB that updates specific fields;
-			//	something like this updateObject(NULL, NULL, 23, NULL, NULL); Updates only the non-NULL fields
+			// get the review
+			Review review = (Review)dbProxy.getReviews(movieId, userId).get(0);
+			review.setFlag(true);
 
+			dbProxy.updateReview(review);
+			
 			retval = "review";
 		}
 		
