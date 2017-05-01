@@ -72,6 +72,8 @@ public class ReviewController {
 
 		String retval = "joinus";	// return to the same page
 
+		System.out.println("Delete review button pressed");
+		
 		if (LoginController.isLoggedIn() == true) {				// check if the user is logged in
 		
 			int movieId = Integer.parseInt(movieIdStr);
@@ -91,7 +93,7 @@ public class ReviewController {
 					System.out.println("\nDeleting review failed");
 				}
 			}
-			
+
 			retval = "review";
 		}
 
