@@ -111,7 +111,7 @@ public class Movie {
 		this.setNumberOfCriticsRated(0);
 		this.setNumberOfUsersRated(0);
 		this.setReleaseYear(rYear);
-		this.setImageLocation(imgLoc);
+		this.setImageLocation(imageLocation);
 	}
 	
 }
