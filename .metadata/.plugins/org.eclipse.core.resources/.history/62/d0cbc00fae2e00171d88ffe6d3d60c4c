@@ -76,7 +76,7 @@ public class ReviewController {
 			if (reviewList.isEmpty() == false) {
 				// User has reviewed
 	
-				boolean dbAccessRC = dbProxy.deleteReview(movieId, userId);
+//				boolean dbAccessRC = dbProxy.deleteReview(movieId, userId);
 	
 				if (dbAccessRC == true) {
 					System.out.println("\nDeleting review successful");
