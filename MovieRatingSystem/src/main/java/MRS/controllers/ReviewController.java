@@ -76,20 +76,20 @@ public class ReviewController {
 		
 			int movieId = Integer.parseInt(movieIdStr);
 			int userId = Integer.parseInt(userIdStr);
-			
+
 			// check if the user has already reviewed
 			List<Review> reviewList = dbProxy.getReviews(movieId, userId);
 	
 			if (reviewList.isEmpty() == false) {
 				// User has reviewed
 	
-//				boolean dbAccessRC = dbProxy.deleteReview(movieId, userId);
-//				if (dbAccessRC == true) {
-//					System.out.println("\nDeleting review successful");
-//				}
-//				else {
-//					System.out.println("\nDeleting review failed");
-//				}
+				boolean dbAccessRC = dbProxy.deleteReview(reviewList.get(0));
+				if (dbAccessRC == true) {
+					System.out.println("\nDeleting review successful");
+				}
+				else {
+					System.out.println("\nDeleting review failed");
+				}
 			}
 			
 			retval = "review";
@@ -100,14 +100,36 @@ public class ReviewController {
 
 	// deleting a flagged review; Only Moderator and Admin can do this
 	@RequestMapping("/deleteflaggedreview")
-	public String deleteFlaggedReview(Model model) {
+	public String deleteFlaggedReview(Model model, @RequestParam String movieIdStr, @RequestParam String userIdStr) {
 
 		String retval = "joinus";
-		
+
+		int movieId = Integer.parseInt(movieIdStr);
+		int userId = Integer.parseInt(userIdStr);
+
+		// get the review
+		Review review = (Review)dbProxy.getReviews(movieId, userId).get(0);
+
 		if (LoginController.isLoggedIn() == true) {				// check if the user is logged in
 
-			// delete a comment
-			
+			// check if the user with appropriate privileges is logged in (not necessary)
+			if ((PageController.user.getUserRoleId() == 1)
+					|| (PageController.user.getUserRoleId() == 2))
+			{
+				// delete a review using the above function
+				boolean dbAccessRC = dbProxy.deleteReview(review);
+				if (dbAccessRC == true) {
+					System.out.println("\nDeleting flagged review successful");
+				}
+				else {
+					System.out.println("\nDeleting flagged review failed");
+				}
+			}
+			else
+			{
+				System.out.println("User is not authorized to delete the flagged review");
+			}
+
 			retval = "review";	// should actually return to the flagged reviews page
 		}		
 		
