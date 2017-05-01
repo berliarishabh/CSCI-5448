@@ -1,0 +1,13 @@
+package MRS.controllers;
+
+import org.springframework.stereotype.Controller;
+
+import MRS.Model.User;
+
+@Controller
+public class MovieController {
+	private User user = null;
+	
+	
+	
+}

@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Review {
 
 	/* From class diagram:
-	 * id: int
+	 * reviewid: int
 	 * rating: double
 	 * comment: String
 	 * flag: boolean
@@ -19,6 +19,14 @@ public class Review {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "reviewId")
 	private int reviewId;
+
+	public Review(double rating, String comment, int userId, int movieId) {
+		this.rating = rating;
+		this.comment = comment;
+		this.userId = userId;
+		this.movieId = movieId;
+		this.flag    = false;
+	}
 
 	@Column(name = "rating")
 	private double rating;
@@ -82,6 +90,5 @@ public class Review {
 	public void setMovieId(int movieId) {
 		this.movieId = movieId;
 	}
-	
-	
+
 }

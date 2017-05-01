@@ -1,9 +1,0 @@
-0:0:0:0:0:0:0:1 - - [27/Apr/2017:21:54:26 -0600] "GET /MovieRatingSystem/movie HTTP/1.1" 200 288 http-bio-8080-exec-1 3945
-0:0:0:0:0:0:0:1 - - [27/Apr/2017:21:56:02 -0600] "GET /MovieRatingSystem/movie HTTP/1.1" 200 288 http-bio-8080-exec-1 3908
-0:0:0:0:0:0:0:1 - - [27/Apr/2017:22:04:57 -0600] "GET /MovieRatingSystem/movie HTTP/1.1" 500 8535 http-bio-8080-exec-1 3178
-0:0:0:0:0:0:0:1 - - [27/Apr/2017:22:09:01 -0600] "GET /MovieRatingSystem/movie HTTP/1.1" 500 4099 http-bio-8080-exec-1 3171
-0:0:0:0:0:0:0:1 - - [27/Apr/2017:22:10:04 -0600] "GET /MovieRatingSystem/movie HTTP/1.1" 500 4099 http-bio-8080-exec-1 3279
-0:0:0:0:0:0:0:1 - - [27/Apr/2017:22:11:12 -0600] "GET /MovieRatingSystem/movie HTTP/1.1" 500 4099 http-bio-8080-exec-1 3230
-0:0:0:0:0:0:0:1 - - [27/Apr/2017:22:12:33 -0600] "GET /MovieRatingSystem/movie HTTP/1.1" 200 288 http-bio-8080-exec-1 3233
-0:0:0:0:0:0:0:1 - - [27/Apr/2017:22:32:35 -0600] "GET /MovieRatingSystem/movie HTTP/1.1" 200 288 http-bio-8080-exec-1 1960
-0:0:0:0:0:0:0:1 - - [27/Apr/2017:22:34:56 -0600] "GET /MovieRatingSystem/movie HTTP/1.1" 200 288 http-bio-8080-exec-1 2012

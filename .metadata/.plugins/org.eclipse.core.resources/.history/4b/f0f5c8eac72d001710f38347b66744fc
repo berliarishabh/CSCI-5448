@@ -1,0 +1,76 @@
+package MRS.controllers;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import MRS.Common.DBProxy;
+import MRS.Model.Movie;
+import MRS.Model.User;
+
+@Controller
+public class PageController{
+	
+	protected User user;
+	static private PageController pc = null;
+	protected DBProxy dbProxy;
+	
+	public PageController(User user){
+		pc = PageControllerFactory.createPageController(user);
+		dbProxy = new DBProxy();
+		pc.setUser(user);
+	}
+	
+//	public void createPageController(User user){
+//		this.setUser(user);
+//		if(user.getUserRoleId() == 4)
+//		{
+////			System.out.println("Created UserController");
+//			pc = new UserController(); 
+//		}
+//		else if(user.getUserRoleId() == 3)
+//		{
+////			System.out.println("Created CriticController");
+//			pc = new CriticController(); 
+//		}
+//		else if(user.getUserRoleId() == 2)
+//		{
+////			System.out.println("Created CriticController");
+//			pc = new ModeratorController();  
+//		}
+//		else if(user.getUserRoleId() == 1)
+//		{
+////			System.out.println("Created CriticController");
+//			pc = new AdminController();  
+//		}
+//	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	@GetMapping("/user")
+	public String nameUser(Model model)
+	{
+		System.out.println("In name user PageController");
+		String res = pc.nameUser(model);
+		return res;
+	}
+	
+	@GetMapping("/movies")
+	public String movies(Model model)
+	{
+		List<Movie> mv;
+		mv = dbProxy.getMovies("", 0, 0, 'A');
+		model.addAttribute("moviesList", mv);
+//		model.addAttribute("movieName", mv.get(1).getMovieName());
+//		model.addAttribute("releaseYear", mv.get(0).getReleaseYear());
+		return "movies";	// name of the jsp file
+	}
+}

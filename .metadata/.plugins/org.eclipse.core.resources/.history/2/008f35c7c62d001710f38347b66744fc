@@ -1,0 +1,30 @@
+package MRS.controllers;
+
+import MRS.Model.User;
+
+public class PageControllerFactory {
+//	public void createPageController(User user);
+	
+	public PageControllerFactory(User user){
+		if(user.getUserRoleId() == 4)
+		{
+//			System.out.println("Created UserController");
+			pc = new UserController(); 
+		}
+		else if(user.getUserRoleId() == 3)
+		{
+//			System.out.println("Created CriticController");
+			pc = new CriticController(); 
+		}
+		else if(user.getUserRoleId() == 2)
+		{
+//			System.out.println("Created CriticController");
+			pc = new ModeratorController();  
+		}
+		else if(user.getUserRoleId() == 1)
+		{
+//			System.out.println("Created CriticController");
+			pc = new AdminController();  
+		}
+	}
+}

@@ -1,0 +1,7 @@
+package MRS.controllers;
+
+public class PageController implements PageControllerFactory{
+	public PageController createPageController(User user){
+		if(user.get)
+	}
+}

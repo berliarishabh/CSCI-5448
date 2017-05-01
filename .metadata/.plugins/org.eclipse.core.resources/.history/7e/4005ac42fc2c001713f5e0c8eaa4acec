@@ -1,0 +1,37 @@
+package MRS.controllers;
+
+import MRS.Model.User;
+
+public class PageController implements PageControllerFactory{
+	
+	private User user;
+	
+	public PageController createPageController(User user){
+		this.setUser(user);
+		if(user.getUserRoleId() == 4)
+		{
+			return new UserController(); 
+		}
+//		else if(user.getUserRoleId() == 3)
+//		{
+//			return new CriticController(); 
+//		}
+//		else if(user.getUserRoleId() == 2)
+//		{
+//			return new ModeratorController(); 
+//		}
+//		else if(user.getUserRoleId() == 1)
+//		{
+//			return new AdminController(); 
+//		}
+		return null;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+}

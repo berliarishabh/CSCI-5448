@@ -1,0 +1,40 @@
+package MRS.controllers;
+
+import MRS.Common.DBProxy;
+import java.util.List;
+
+import MRS.Model.*;
+
+//import javax.validation.OverridesAttribute.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+public class LoginController {
+	private DBProxy dbProxy;
+	
+	private LoginController()
+	{
+		dbProxy = new DBProxy();
+	}
+	
+	@PostMapping("/login")
+	public String welcome(Model model, @RequestParam String name,
+			@RequestParam String password)
+	{
+		Boolean result = false;
+		result= dbProxy.validateUser(name, password);
+		if(result == true)
+		{
+			model.addAttribute("firstName", name);
+			return "welcomeMessage";	// name of the jsp file
+		}
+		else
+		{
+			return "movies";
+		}
+	}
+}

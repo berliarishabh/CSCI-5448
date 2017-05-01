@@ -1,0 +1,42 @@
+package MRS.controllers;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+//import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import MRS.Common.DBProxy;
+import MRS.Model.Movie;
+
+@Controller
+public class MovieController {
+	private User user = null;
+	
+	private DBProxy dbProxy;
+	
+	public MovieController(){
+		dbProxy = new DBProxy();
+	}
+	
+	@GetMapping("/movies")
+	public @ResponseBody Map<String, List<Movie>> moviess(Model model)
+	{
+		Map<String, List<Movie>> map = new HashMap<String, List<Movie>>();
+//		Movie mv = new Movie();
+//		mv.setAggregateRating(7.4);
+//		mv.setApprovalState('A');
+//		mv.setGenre("Horror");
+//		mv.setMovieName("Insidious");
+//		mv.setNumberOfCriticsRated(99);
+//		mv.setNumberOfUsersRated(99);
+//		mv.setReleaseYear(2011);
+		List<Movie> mv = dbProxy.getMovies("", 0, 0, 'A');
+		map.put("movieList", mv);
+		return map;	// name of the jsp file
+	}
+	
+}

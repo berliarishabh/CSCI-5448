@@ -20,7 +20,6 @@ public class DBProxy implements DBProxyInterface {
 		return session;
 	}
 	
-	@Override
 	public boolean validateUser(String username , String password)
 	{
 		Session session = beginSession();
@@ -29,9 +28,8 @@ public class DBProxy implements DBProxyInterface {
 		query.setParameter("username", username);
 		query.setParameter("password", password);
 		@SuppressWarnings("unchecked")
-		List<User> ls = (List<User>)query.getResultList();
+		List<User>ls = (List<User>)query.getResultList();
 		session.close();
-		
 		if(ls==null || ls.isEmpty())
 		{
 			return false;
@@ -39,21 +37,18 @@ public class DBProxy implements DBProxyInterface {
 		return true;
 	}
 
-	@Override
-	public List<User> getUserDetails(String username, String password)
+	public User getUserDetails(String username, String password)
 	{
 		Session session = beginSession();
 		String queried = "from User where username = :username and password = :password";
 		Query query = session.createQuery(queried);
 		query.setParameter("username", username);
 		query.setParameter("password", password);
-		@SuppressWarnings("unchecked")
-		List<User> ls = (List<User>)query.getResultList();
+		User ls = (User)query.getSingleResult();
 		session.close();
 		return ls;
 	}
 	
-	@Override
 	public Movie getMovie(String movieName)
 	{
 		Session session = beginSession();
@@ -65,15 +60,14 @@ public class DBProxy implements DBProxyInterface {
 		return mv;
 	}
 	
-	@Override
 	public List<Movie> getMovies(String genre, int releaseYear, double aggregateRating, char approvalState)
 	{
 		Session session = beginSession();
-		String queried = "from Movie ";
+		String queried = "from Movie";
 		String checkConditions = new String("");
 		if(genre != "")
 		{
-			checkConditions += "genre = :genre";
+			checkConditions = "genre = :genre";
 		}
 		if(releaseYear != 0)
 		{
@@ -88,20 +82,23 @@ public class DBProxy implements DBProxyInterface {
 			checkConditions += "aggregateRating = :aggregateRating";
 		}
 		if(checkConditions != "")
-			queried += "where approvalState = :approvalState" + " " + checkConditions;
+			queried += " where approvalState = :approvalState ";
 		queried += checkConditions;
+		System.out.println("query is " + queried);
 		Query query = session.createQuery(queried);
-		query.setParameter("genre", genre);
-		query.setParameter("releaseYear", releaseYear);
-		query.setParameter("aggregateRating", aggregateRating);
 		query.setParameter("approvalState", approvalState);
+		if(releaseYear != 0)
+			query.setParameter("releaseYear", releaseYear);
+		if(genre != "")
+			query.setParameter("genre", genre);
+		if(aggregateRating != 0)
+			query.setParameter("aggregateRating", aggregateRating);
 		@SuppressWarnings("unchecked")
 		List<Movie> mv= (List<Movie>)query.getResultList();
 		session.close();
 		return mv;
 	}
 	
-	@Override
 	public List<Review> getReviews(int movieId, int userId)
 	{
 		Session session = beginSession();
@@ -119,15 +116,16 @@ public class DBProxy implements DBProxyInterface {
 		}
 		queried += checkConditions;
 		Query query = session.createQuery(queried);
-		query.setParameter("movieId", movieId);
-		query.setParameter("userId", userId);
+		if(movieId != 0)
+			query.setParameter("movieId", movieId);
+		if(userId != 0)
+			query.setParameter("userId", userId);
 		@SuppressWarnings("unchecked")
 		List<Review> rv= (List<Review>)query.getResultList();
 		session.close();
 		return rv;
 	}
 	
-	@Override
 	public boolean addMovie(Movie mv)
 	{
 		Session session = beginSession();
@@ -137,7 +135,7 @@ public class DBProxy implements DBProxyInterface {
 			tx.commit();
 		}
 		catch(Exception e){
-			System.out.println("Adding Movie exception is " + e.getMessage());
+			System.out.println("Adding Movie - exception is " + e.getMessage());
 			session.close();
 			return false;
 		}
@@ -145,7 +143,6 @@ public class DBProxy implements DBProxyInterface {
 		return true;
 	}
 	
-	@Override
 	public boolean addReview(Review rv)
 	{
 		Session session = beginSession();
@@ -155,7 +152,24 @@ public class DBProxy implements DBProxyInterface {
 			tx.commit();
 		}
 		catch(Exception e){
-			System.out.println("Adding Review exception is " + e.getMessage());
+			System.out.println("Adding Review - exception is " + e.getMessage());
+			session.close();
+			return false;
+		}
+		session.close();
+		return true;
+	}
+	
+	public boolean addUser(User user)
+	{
+		Session session = beginSession();
+		Transaction tx = session.beginTransaction();
+		try{
+			session.save(user);
+			tx.commit();
+		}
+		catch(Exception e){
+			System.out.println("Adding User - exception is " + e.getMessage());
 			session.close();
 			return false;
 		}
