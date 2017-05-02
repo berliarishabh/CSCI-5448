@@ -142,7 +142,7 @@ public class ReviewController {
 	}
 
 	@RequestMapping("/flagreview")
-	public String flagReview(Model model, 
+	public String flagReview(Model model, @RequestParam String flagStr,
 			@RequestParam String movieIdStr, @RequestParam String userIdStr) {
 		
 		String retval = "joinus";
@@ -151,11 +151,21 @@ public class ReviewController {
 		
 			int movieId = Integer.parseInt(movieIdStr);
 			int userId = Integer.parseInt(userIdStr);
+			int flag = 1;
+			int checkFlag = 0;
+			if(flagStr == "false"){
+				flag = 0; 
+				checkFlag = 1;
+			}
+			else if(flagStr == "true"){
+				flag = 1;
+				checkFlag = 0;
+			}
 
 			// get the review
-			Review review = (Review)dbProxy.getReviews(movieId, userId, 0).get(0);
+			Review review = (Review)dbProxy.getReviews(movieId, userId, checkFlag).get(0);
 			System.out.println("ReviewId is " + review.getReviewId());
-			review.setFlag(true);
+			review.setFlag(flag);
 
 			dbProxy.updateReview(review);
 			
@@ -175,7 +185,11 @@ public class ReviewController {
 		
 			int movieId = Integer.parseInt(movieIdStr);
 			int userId = Integer.parseInt(userIdStr);
-			int flag = Integer.parseInt(flagStr);
+			int flag = 0;
+			if(flagStr == "false")
+				flag = 0; 
+			else if(flagStr == "true")
+				flag = 1;
 
 			// get the review
 			

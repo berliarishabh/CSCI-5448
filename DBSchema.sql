@@ -69,6 +69,15 @@ insert into movie_tbl(movieName, releaseYear, genre, aggregateRating, numberOfUs
 values('Forrest Gump', 2014, 'Comedy', 0, 0, 0, 'A','dummy/forrestgump.jpeg', 
 'Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque.');
 
+insert into movie_tbl(movieName, releaseYear, genre, aggregateRating, numberOfUsersRated, numberOfCriticsRated, approvalState,imageLocation, movieDescription)
+values('October Sky', 1999, 'Biography', 75, 10, 20, 'A','dummy/octobersky.jpeg', 
+'');
+
+insert into movie_tbl(movieName, releaseYear, genre, aggregateRating, numberOfUsersRated, numberOfCriticsRated, approvalState,imageLocation, movieDescription)
+values('Snatch', 1994, 'Comedy', 68, 40, 70, 'A','dummy/snatch.jpeg', 
+'Unscrupulous boxing promoters, violent bookmakers, a Russian gangster, incompetent amateur robbers, and supposedly Jewish jewelers fight to track down a priceless stolen diamond. ');
+
+
 SELECT * FROM MOVIE_TBL;
 
 DROP TABLE REVIEW_TBL;
@@ -86,7 +95,8 @@ CREATE TABLE `Review_tbl` (
 insert into review_tbl(rating, comment, movieId, flag, userId, nameUser)
 values(78,'Good Movie', 1, 0, 1, 'Rishabh');
 SELECT * FROM REVIEW_TBL;
-
+insert into review_tbl(rating, comment, movieId, flag, userId, nameUser)
+values(88,'Gud Movie', 1, 0, 3, 'Omkar');
 SELECT * FROM MOVIE_TBL WHERE releaseYear = null;
 # A BIG TODO:
 # Finish this

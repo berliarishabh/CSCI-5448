@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController {
 	private DBProxy dbProxy;
 	private static User user = null;
-	private static boolean loginState = false;
+	private static boolean loginState = false; 
 	
 	private LoginController()
 	{

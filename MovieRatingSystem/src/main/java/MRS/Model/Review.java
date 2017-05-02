@@ -26,7 +26,7 @@ public class Review {
 		this.setComment(comment);
 		this.setUserId(userId);
 		this.setMovieId(movieId);
-		this.setFlag(false);
+		this.setFlag(0);
 		this.setNameUser(nameUser);
 	}
 
@@ -37,7 +37,7 @@ public class Review {
 	private String comment;	// do we need a limit on the length?
 
 	@Column(name = "flag")
-	private boolean flag;
+	private int flag;
 
 	@Column(name = "userId")
 	private int userId;	// user Id? from user table?
@@ -80,11 +80,11 @@ public class Review {
 		this.comment = comment;
 	}
 
-	public boolean isFlag() {
+	public int isFlag() {
 		return flag;
 	}
 
-	public void setFlag(boolean flag) {
+	public void setFlag(int flag) {
 		this.flag = flag;
 	}
 

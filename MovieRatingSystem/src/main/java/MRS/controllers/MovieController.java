@@ -46,7 +46,9 @@ public class MovieController {
 			@RequestParam String releaseYear, @RequestParam String aggregateRating, 
 			@RequestParam String approvalState)
 	{
-		char appState = approvalState.charAt(0);
+		char appState = 'A';
+		if(approvalState != "")
+			approvalState.charAt(0);
 		if(!LoginController.isLoggedIn())
 			return null;
 		user = LoginController.getUser();
