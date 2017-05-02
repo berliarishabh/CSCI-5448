@@ -46,7 +46,15 @@ public class Movie {
 	@Column(name = "imageLocation")
 	private String imageLocation;
 
+	@Column(name = "movieDescription")
+	private String movieDescription;
 
+	public String getMovieDescription() {
+		return movieDescription;
+	}
+	public void setMovieDescription(String movieDescription) {
+		this.movieDescription = movieDescription;
+	}
 	public String getImageLocation() {
 		return imageLocation;
 	}
@@ -102,7 +110,8 @@ public class Movie {
 		this.approvalState = approvalState;
 	}
 	
-	public void setElements(String mvName, int rYear, String genre, double aggRating, String imgLoc, char approvalState)
+	public void setElements(String mvName, int rYear, String genre, double aggRating, 
+			String imgLoc, char approvalState, String mvDesc)
 	{
 		this.setAggregateRating(aggRating);
 		this.setApprovalState(approvalState);
@@ -112,6 +121,7 @@ public class Movie {
 		this.setNumberOfUsersRated(0);
 		this.setReleaseYear(rYear);
 		this.setImageLocation(imgLoc);
+		this.setMovieDescription(mvDesc);
 	}
 	
 }

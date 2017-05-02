@@ -1,0 +1,138 @@
+package MRS.controllers;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+//import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import MRS.Common.DBProxy;
+import MRS.Model.Movie;
+import MRS.Model.User;
+
+@Controller
+public class MovieController {
+	
+	private User user = null;
+	
+	private DBProxy dbProxy = null;
+	
+	public MovieController(){
+		dbProxy = new DBProxy();
+	}
+	
+	@RequestMapping("/movies")
+	public @ResponseBody Map<String, List<Movie>> movies(Model model, @RequestParam String genre,
+			@RequestParam String releaseYear, @RequestParam String aggregateRating)
+	{
+		if(!LoginController.isLoggedIn())
+			return null;
+		user = LoginController.getUser();
+		Map<String, List<Movie>> map = new HashMap<String, List<Movie>>();
+		int rYear = 0; 
+		double aggRating = 0;
+		char approvalState = 'A';
+		if(releaseYear != "")
+			rYear =	Integer.parseInt(releaseYear);
+		if(aggregateRating != "")
+			aggRating = Double.parseDouble(aggregateRating);
+		if(genre == "")
+			genre = "";
+		System.out.println(genre + ":" + releaseYear + ":"  + aggregateRating); 
+		if(user.getUserRoleId() == 4){
+			approvalState = 'A';
+		}
+		else if(user.getUserRoleId() == 3){
+			approvalState = 'A';
+		}
+		List<Movie> mv = dbProxy.getMovies(genre, rYear, aggRating, approvalState);
+		map.put("movieList", mv);
+		return map;	// name of the jsp file
+	}
+	
+	// add a movie by the user
+	@PostMapping("/addmovie")
+	public String addMovie(Model model, @RequestParam String movieName, 
+			@RequestParam String imageLocation, @RequestParam String releaseYear, 
+			@RequestParam String aggregateRating, @RequestParam String genre, 
+			@RequestParam String movieDescription) {
+
+		String retval = "joinus";	// return to the login page
+
+		if (LoginController.isLoggedIn() == true) {				// check if the user is logged in
+			if(PageController.getUser().getUserId()== 1 || PageController.getUser().getUserId()== 2)
+				return retval;
+			double aggRating = Double.parseDouble(aggregateRating);
+			int rYear	= Integer.parseInt(releaseYear);
+			char approvalState = 'P';
+			System.out.println("\nAdding Movie");
+			Movie newMovie = new Movie();
+			newMovie.setElements(movieName, rYear, genre, aggRating, imageLocation, approvalState, movieDescription);
+
+			boolean dbAccessRC = dbProxy.addMovie(newMovie);
+
+			if (dbAccessRC == true) {
+				System.out.println("\nAdding Movie successful");
+			}
+			else {
+				System.out.println("\nAdding Movie failed");
+			}
+			retval = "movies";		// reload the page
+		}
+
+		return retval;
+	}
+	
+	@RequestMapping("/approveMovie")
+	public String approveMovie(Model model, @RequestParam String movieName, 
+			@RequestParam String movieIdStr ){
+		
+		String retval = "movies";
+		
+		if (LoginController.isLoggedIn() == true) {				// check if the user is logged in
+		
+			if(PageController.getUser().getUserId()== 3 || PageController.getUser().getUserId()== 4)
+				return retval;
+			int movieId = Integer.parseInt(movieIdStr);
+			// get the movie
+			Movie movie = dbProxy.getMovie(movieName);
+			if(movieId != movie.getMovieId())
+				return retval;
+			movie.setApprovalState('A');
+			dbProxy.updateMovie(movie);
+			System.out.println("Movie Approved");
+			retval = "movies";
+		}
+		return retval;
+	}
+	
+	@RequestMapping("/singleMovie")
+	public String getsingleMovie(Model model, @RequestParam String movieName, 
+			@RequestParam String movieIdStr ){
+		
+		String retval = "movies";
+		
+		if (LoginController.isLoggedIn() == true) {				// check if the user is logged in
+		
+			if(PageController.getUser().getUserId()== 3 || PageController.getUser().getUserId()== 4)
+				return retval;
+			int movieId = Integer.parseInt(movieIdStr);
+			// get the movie
+			Movie movie = dbProxy.getMovie(movieName);
+			if(movieId != movie.getMovieId())
+				return retval;
+			movie.setApprovalState('A');
+			dbProxy.updateMovie(movie);
+			System.out.println("Movie Approved");
+			retval = "movies";
+		}
+		return retval;
+	}
+}

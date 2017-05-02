@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import MRS.Common.DBProxy;
 import MRS.Model.Movie;
+import MRS.Model.Review;
 import MRS.Model.User;
 
 @Controller
@@ -28,7 +29,7 @@ public class MovieController {
 		dbProxy = new DBProxy();
 	}
 	
-	@PostMapping("/movies")
+	@RequestMapping("/movies")
 	public @ResponseBody Map<String, List<Movie>> movies(Model model, @RequestParam String genre,
 			@RequestParam String releaseYear, @RequestParam String aggregateRating)
 	{
@@ -61,7 +62,8 @@ public class MovieController {
 	@PostMapping("/addmovie")
 	public String addMovie(Model model, @RequestParam String movieName, 
 			@RequestParam String imageLocation, @RequestParam String releaseYear, 
-			@RequestParam String aggregateRating, @RequestParam String genre) {
+			@RequestParam String aggregateRating, @RequestParam String genre, 
+			@RequestParam String movieDescription) {
 
 		String retval = "joinus";	// return to the login page
 
@@ -73,7 +75,7 @@ public class MovieController {
 			char approvalState = 'P';
 			System.out.println("\nAdding Movie");
 			Movie newMovie = new Movie();
-			newMovie.setElements(movieName, rYear, genre, aggRating, imageLocation, approvalState);
+			newMovie.setElements(movieName, rYear, genre, aggRating, imageLocation, approvalState, movieDescription);
 
 			boolean dbAccessRC = dbProxy.addMovie(newMovie);
 
@@ -83,7 +85,6 @@ public class MovieController {
 			else {
 				System.out.println("\nAdding Movie failed");
 			}
-
 			retval = "movies";		// reload the page
 		}
 
@@ -111,5 +112,29 @@ public class MovieController {
 			retval = "movies";
 		}
 		return retval;
+	}
+	
+	@RequestMapping("/singleMovie")
+	public @ResponseBody Map<String, Object> getSingleMovie(Model model, 
+			@RequestParam String movieName){
+		Map<String, Object> map = new HashMap<String, Object>();
+//		if (LoginController.isLoggedIn() == true) {				// check if the user is logged in
+			// get the movie
+			Movie movie = dbProxy.getMovie(movieName);
+			List<Review> reviews = dbProxy.getReviews(movie.getMovieId(), 0);
+			System.out.println("MovieName is " + movie.getMovieName());
+			map.put("reviewList", reviews);
+			map.put("movieId", movie.getMovieId());
+			map.put("releaseYear", movie.getReleaseYear());
+			map.put("aggregateRating", movie.getAggregateRating());
+			map.put("movieName", movie.getMovieName());
+			map.put("movieDescription", movie.getMovieDescription());
+			map.put("genre", movie.getGenre());
+			map.put("imageLocation", movie.getImageLocation());
+			System.out.println("Single Movie Sent");
+//		}
+//		else
+//			map = null;
+		return map;
 	}
 }
