@@ -55,69 +55,46 @@
 				</div>
 			</header>
 			<main class="main-content">
-				<div class="container">
+				<div class=container>
 					<div class="page">
 						<div class="breadcrumbs">
-							<a href="index.html">Home</a>
+					<a href="index.html">Home</a>
 							<span>Movie Review</span>
 						</div>
 
 						<div class="filters">
-							<select name="#" id="#" placeholder="Choose Category">
-								<option value="#">Action</option>
-								<option value="#">Drama</option>
-								<option value="#">Fantasy</option>
-								<option value="#">Horror</option>
-								<option value="#">Adventure</option>
+							<select name="genre" id="genre">
+								<option value="">Not Selected</option>
+								<option value="Action">Action</option>
+								<option value="Drama">Drama</option>
+								<option value="Animation">Animation</option>
+								<option value="Horror">Horror</option>
+								<option value="Comedy">Comedy</option>
+								<option value="Fantasy">Fantasy</option>
+								<option value="Sci-Fi">Sci-Fi</option>
+
 							</select>
-							<select name="#" id="#">
-								<option value="#">2012</option>
-								<option value="#">2013</option>
-								<option value="#">2014</option>
+							<select name="releaseYear" id="releaseYear">
+								<option value="">Not Selected</option>
+								<option value="2013">2013</option>
+								<option value="2014">2014</option>
+								<option value="2015">2015</option>
+								<option value="2016">2016</option>
+								<option value="2017">2017</option>
 							</select>
+
+							<select name="aggregateRating" id="aggregateRating">
+								<option value="">Not Selected</option>
+								<option value="H">Highest Rated First</option>
+								<option value="L">Lowest Rated First</option>
+							</select>
+
+							<input value="Go" type='button' id='go' />
+
 						</div>
+
 						<div class="movie-list">
-							<div class="movie">
-								<figure class="movie-poster"><img src="dummy/thumb-3.jpg" alt="#"></figure>
-								<div class="movie-title"><a href="single.html">Maleficient</a></div>
-								<p>Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque.</p>
-							</div>
-							<div class="movie">
-								<figure class="movie-poster"><img src="dummy/thumb-4.jpg" alt="#"></figure>
-								<div class="movie-title"><a href="single.html">The adventure of Tintin</a></div>
-								<p>Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque.</p>
-							</div>
-							<div class="movie">
-								<figure class="movie-poster"><img src="dummy/thumb-5.jpg" alt="#"></figure>
-								<div class="movie-title"><a href="single.html">Hobbit</a></div>
-								<p>Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque.</p>
-							</div>
-							<div class="movie">
-								<figure class="movie-poster"><img src="dummy/thumb-6.jpg" alt="#"></figure>
-								<div class="movie-title"><a href="single.html">Exists</a></div>
-								<p>Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque.</p>
-							</div>
-							<div class="movie">
-								<figure class="movie-poster"><img src="dummy/thumb-1.jpg" alt="#"></figure>
-								<div class="movie-title"><a href="single.html">Drive hard</a></div>
-								<p>Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque.</p>
-							</div>
-							<div class="movie">
-								<figure class="movie-poster"><img src="dummy/thumb-2.jpg" alt="#"></figure>
-								<div class="movie-title"><a href="single.html">Robocop</a></div>
-								<p>Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque.</p>
-							</div>
-							<div class="movie">
-								<figure class="movie-poster"><img src="dummy/thumb-7.jpg" alt="#"></figure>
-								<div class="movie-title"><a href="single.html">Life of Pi</a></div>
-								<p>Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque.</p>
-							</div>
-							<div class="movie">
-								<figure class="movie-poster"><img src="dummy/thumb-8.jpg" alt="#"></figure>
-								<div class="movie-title"><a href="single.html">The Colony</a></div>
-								<p>Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque.</p>
-							</div>
-						</div> <!-- .movie-list -->
+
 
 						<div class="pagination">
 							<a href="#" class="page-number prev"><i class="fa fa-angle-left"></i></a>
@@ -129,10 +106,13 @@
 							<a href="#" class="page-number next"><i class="fa fa-angle-right"></i></a>
 						</div>
 					</div>
+				</div>
+
+
 				</div> <!-- .container -->
 			</main>
 			<footer class="site-footer">
-				<div class="container">
+				<div class="container-1">
 
 
 				</div> <!-- .container -->
@@ -145,7 +125,12 @@
 
 		<script src="js/jquery-1.11.1.min.js"></script>
 		<script src="js/plugins.js"></script>
-		<script src="js/app.js"></script>
+		<script src="js/review.js"></script>
+
+<script>
+
+</script>
+
 
 	</body>
 
