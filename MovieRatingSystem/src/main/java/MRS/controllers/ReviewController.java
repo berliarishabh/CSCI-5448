@@ -5,14 +5,15 @@ import MRS.Model.Review;
 import MRS.Common.*;
 import MRS.controllers.LoginController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ReviewController {
@@ -34,14 +35,13 @@ public class ReviewController {
 
 			double rating 	= Double.parseDouble(ratingStr);
 			int userId	 	= LoginController.getUser().getUserId();
-//			int movieId		= Integer.parseInt(movieIdStr);
 			String nameUser = LoginController.getUser().getName();
 			
 			Movie mv = dbProxy.getMovie(movieName);
 			int movieId = mv.getMovieId();
 			
 			// check if the user has already reviewed
-			List<Review> reviewList = dbProxy.getReviews(movieId, userId);
+			List<Review> reviewList = dbProxy.getReviews(movieId, userId, 0);
 
 			if (reviewList.isEmpty() == true) {
 				// user has not reviewed
@@ -82,7 +82,7 @@ public class ReviewController {
 			int userId = LoginController.getUser().getUserId();
 
 			// check if the user has already reviewed
-			List<Review> reviewList = dbProxy.getReviews(movieId, userId);
+			List<Review> reviewList = dbProxy.getReviews(movieId, userId, 0);
 	
 			if (reviewList.isEmpty() == false) {
 				// User has reviewed
@@ -113,7 +113,7 @@ public class ReviewController {
 		int userId = Integer.parseInt(userIdStr);
 
 		// get the review
-		Review review = (Review)dbProxy.getReviews(movieId, userId).get(0);
+		Review review = (Review)dbProxy.getReviews(movieId, userId, 1).get(0);
 
 		if (LoginController.isLoggedIn() == true) {				// check if the user is logged in
 
@@ -153,7 +153,7 @@ public class ReviewController {
 			int userId = Integer.parseInt(userIdStr);
 
 			// get the review
-			Review review = (Review)dbProxy.getReviews(movieId, userId).get(0);
+			Review review = (Review)dbProxy.getReviews(movieId, userId, 0).get(0);
 			System.out.println("ReviewId is " + review.getReviewId());
 			review.setFlag(true);
 
@@ -163,5 +163,28 @@ public class ReviewController {
 		}
 		
 		return retval;
+	}
+	
+	@RequestMapping("/reviews")
+	public @ResponseBody Map<String, Object> reviews(Model model, @RequestParam String flagStr,
+			@RequestParam String movieIdStr, @RequestParam String userIdStr) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		if (LoginController.isLoggedIn() == true) {				// check if the user is logged in
+		
+			int movieId = Integer.parseInt(movieIdStr);
+			int userId = Integer.parseInt(userIdStr);
+			int flag = Integer.parseInt(flagStr);
+
+			// get the review
+			
+			List<Review> review = (List<Review>)dbProxy.getReviews(movieId, userId, flag);
+			System.out.println("ReviewId is " + review.get(0).getReviewId());
+			
+			map.put("reviewList", review);
+		}
+		
+		return map;
 	}
 }

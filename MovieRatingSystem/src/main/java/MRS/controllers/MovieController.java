@@ -8,11 +8,8 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-//import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import MRS.Common.DBProxy;
@@ -135,10 +132,10 @@ public class MovieController {
 	public @ResponseBody Map<String, Object> getSingleMovie(Model model, 
 			@RequestParam String movieName){
 		Map<String, Object> map = new HashMap<String, Object>();
-//		if (LoginController.isLoggedIn() == true) {				// check if the user is logged in
+		if (LoginController.isLoggedIn() == true) {				// check if the user is logged in
 			// get the movie
 			Movie movie = dbProxy.getMovie(movieName);
-			List<Review> reviews = dbProxy.getReviews(movie.getMovieId(), 0);
+			List<Review> reviews = dbProxy.getReviews(movie.getMovieId(), 0, 0);
 			System.out.println("MovieName is " + movie.getMovieName());
 			map.put("reviewList", reviews);
 			map.put("movieId", movie.getMovieId());
@@ -149,9 +146,9 @@ public class MovieController {
 			map.put("genre", movie.getGenre());
 			map.put("imageLocation", movie.getImageLocation());
 			System.out.println("Single Movie Sent");
-//		}
-//		else
-//			map = null;
+		}
+		else
+			map = null;
 		return map;
 	}
 }
