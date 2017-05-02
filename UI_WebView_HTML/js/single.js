@@ -67,7 +67,7 @@
           + '<div class="movie-summary"> <p>' + object.movieDescription + '</p>'
           + '<div class=year>' + 'Year: ' + object.releaseYear + '</div>'
           + '<div class=genre>' + 'Genre: ' + object.genre + '</div>'
-          + '<div class=star-rating> <span style=width:' + object.aggregateRating + '><strong class="rating"></strong> </span></div>'
+          + '<div class=star-rating> <span style=width:' + object.aggregateRating + '%><strong class="rating"></strong> </span></div>'
           + '</div>'
         );
 

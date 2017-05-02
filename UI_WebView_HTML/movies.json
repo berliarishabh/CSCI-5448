@@ -5,7 +5,7 @@
     "movieName" : "Shawshank Redemption",
     "releaseYear" : "1994",
     "genre" : "Drama",
-    "aggregateRating" : "95%",
+    "aggregateRating" : "95",
     "imageLocation" : "dummy/shawshank.jpeg",
     "movieDescription" : "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."
     },
@@ -14,7 +14,7 @@
     "movieName" : "Fight Club",
     "releaseYear" : "1999",
     "genre" : "Action",
-    "aggregateRating" : "80%",
+    "aggregateRating" : "80",
     "imageLocation" : "dummy/fightclub.jpeg",
     "movieDescription" : "An insomniac office worker, looking for a way to change his life, crosses paths with a devil-may-care soap maker, forming an underground fight club that evolves into something much, much more. "
     },
@@ -23,7 +23,7 @@
     "movieName" : "October Sky",
     "releaseYear" : "1999",
     "genre" : "Biography",
-    "aggregateRating" : "75%",
+    "aggregateRating" : "75",
     "imageLocation" : "dummy/octobersky.jpeg",
     "movieDescription" : "Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque."
     },
@@ -32,7 +32,7 @@
     "movieName" : "Forrest Gump",
     "releaseYear" : "1994",
     "genre" : "Comedy",
-    "aggregateRating" : "70%",
+    "aggregateRating" : "70",
     "imageLocation" : "dummy/forrestgump.jpeg",
     "movieDescription" : "Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque."
 
@@ -42,7 +42,7 @@
     "movieName" : "Snatch",
     "releaseYear" : "1994",
     "genre" : "Comedy",
-    "aggregateRating" : "68%",
+    "aggregateRating" : "68",
     "imageLocation" : "dummy/snatch.jpeg",
     "movieDescription" : "Unscrupulous boxing promoters, violent bookmakers, a Russian gangster, incompetent amateur robbers, and supposedly Jewish jewelers fight to track down a priceless stolen diamond. "
 
@@ -62,7 +62,7 @@
     "movieName" : "Sing Street",
     "releaseYear" : "2016",
     "genre" : "Music",
-    "aggregateRating" : "78%",
+    "aggregateRating" : "78",
     "imageLocation" : "dummy/singstreet.jpeg",
     "movieDescription" : "A boy growing up in Dublin during the 1980s escapes his strained family life by starting a band to impress the mysterious girl he likes. "
 
@@ -72,7 +72,7 @@
       "movieName" : "Arrival",
       "releaseYear" : "2016",
       "genre" : "Sci-Fi",
-      "aggregateRating" : "92%",
+      "aggregateRating" : "92",
       "imageLocation" : "dummy/arrival.jpeg",
       "movieDescription" : " When twelve mysterious spacecraft appear around the world, linguistics professor Louise Banks is tasked with interpreting the language of the apparent alien visitors.  "
 
@@ -82,7 +82,7 @@
       "movieName" : "Deadpool",
       "releaseYear" : "2016",
       "genre" : "Action",
-      "aggregateRating" : "80%",
+      "aggregateRating" : "80",
       "imageLocation" : "dummy/deadpool.jpeg",
       "movieDescription" : "  A fast-talking mercenary with a morbid sense of humor is subjected to a rogue experiment that leaves him with accelerated healing powers and a quest for revenge.  "
 
@@ -92,7 +92,7 @@
       "movieName" : "Minions",
       "releaseYear" : "2015",
       "genre" : "Animation",
-      "aggregateRating" : "60%",
+      "aggregateRating" : "60",
       "imageLocation" : "dummy/minions.jpeg",
       "movieDescription" : "   Minions Stuart, Kevin and Bob are recruited by Scarlet Overkill, a super-villain who, alongside her inventor husband Herb, hatches a plot to take over the world.   "
 
@@ -102,7 +102,7 @@
       "movieName" : "Dirty Grandpa",
       "releaseYear" : "2016",
       "genre" : "Comedy",
-      "aggregateRating" : "40%",
+      "aggregateRating" : "40",
       "imageLocation" : "dummy/dirtygrandpa.jpeg",
       "movieDescription" : "Right before his wedding, an uptight guy is tricked into driving his grandfather, a lecherous former Army Lieutenant-Colonel, to Florida for spring break.  "
 
@@ -112,7 +112,7 @@
       "movieName" : "The Conjuring",
       "releaseYear" : "2013",
       "genre" : "Horror",
-      "aggregateRating" : "70%",
+      "aggregateRating" : "70",
       "imageLocation" : "dummy/conjuring.jpeg",
       "movieDescription" : "Paranormal investigators Ed and Lorraine Warren work to help a family terrorized by a dark presence in their farmhouse.   "
 
