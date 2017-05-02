@@ -10,7 +10,17 @@
       "userId": 1,
       "movieId": 1,
       "nameUser": "Rishabh"
-    }
+    },
+    {
+        "reviewId": 2,
+        "rating": 78,
+        "comment": "Good Movie",
+        "flag": false,
+        "userId": 3,
+        "movieId": 1,
+        "nameUser": "Omkar"
+   }
+
   ],
   "genre": "Drama",
   "movieId": 1,
