@@ -51,8 +51,8 @@
 			}
 
 			// Add your API endpoint instead of movies.json file
-			  loadJSON('http://localhost:8080/MovieRatingSystem/movies?genre=&releaseYear=&aggregateRating=&approvalState=', function(response) {
-				//loadJSON('movies.json', function(response) {
+			  //loadJSON('http://localhost:8080/MovieRatingSystem/movies?genre=&releaseYear=&aggregateRating=&approvalState=', function(response) {
+				loadJSON('movies.json', function(response) {
 
 				// Do Something with the response e.g.
 				var object = JSON.parse(response);
@@ -122,8 +122,8 @@ function loadJSON(endpoint, callback) {
 	xobj.send(null);
 }
 
-//loadJSON('movies-search.json', function(response) {
-	loadJSON(querystring, function(response) {
+loadJSON('movies-search.json', function(response) {
+//	loadJSON(querystring, function(response) {
 
 // Do Something with the response e.g.
 var object = JSON.parse(response);

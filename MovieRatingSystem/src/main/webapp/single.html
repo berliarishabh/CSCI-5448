@@ -105,7 +105,7 @@
 							<!-- Modal content-->
 							<div class="modal-content">
 								<div class="modal-header">
-									<button onclick="test();" type="button" class="close" data-dismiss="modal">&times;</button>
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
 									<h4 class="modal-title">Add a Review</h4>
 								</div>
 								<div class="modal-body">
@@ -116,7 +116,7 @@
 									<label class="moviename" for "movie">Name:</label>
 									<input id="movieName1" name=movieName value=""/>
 									<label class="ratingStr" for "rating">Rating:</label>
-									<input id="ratingStr" name=ratingStr value=""/>									
+									<input id="ratingStr" name=ratingStr value=""/>
 
 								</div>
 
@@ -211,10 +211,7 @@
 		<script src="js/single.js"></script>
 		<script>
 
-    var movieName = localStorage.getItem('movieName');
-		console.log(movieName);
-		$("#movieName1").val(movieName);
-		$("#movieName2").val(movieName);
+
 		</script>
 
 	</body>

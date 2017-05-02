@@ -54,8 +54,8 @@
 			var movieName = localStorage.getItem('movieName');
 			console.log(url);
 			// Add your API endpoint instead of movies.json file
-			loadJSON(url, function(response) {
-				//loadJSON('movies-single.json', function(response) {
+			//loadJSON(url, function(response) {
+				loadJSON('movies-single.json', function(response) {
 
 				// Do Something with the response e.g.
 				var object = JSON.parse(response);
@@ -82,15 +82,23 @@
 
 					// check this out in the console to see what I'm saying
 					console.log("Review " + key, val);
-
+					localStorage.setItem('movieId', val.movieId);
+					localStorage.setItem('userId', val.userId);
 				//	Create a data structure out of each review object and append to items array
 					items.push(
 						'<ul class=movie-meta> '
+						+ '<p><b>Movie Id:  </b>' + val.movieId + '</p>'
             + '<p><b>User:  </b>' + val.nameUser + '</p>'
+						+ '<p><b>User Id: </b>' + val.userId + '</p>'
             + '<li><strong>Rating: </strong>'
             + '<div class=star-rating> <span style=width:' + val.rating + '%><strong class=rating></strong> </span></div> </li>'
-            + '<p><b>Review:</b>  '+ val.comment + '</p>'
-						+ '<br>'
+            + '<p><b>Review:</b>  "'+ val.comment + '"</p>'
+						+ '<td><input type="checkbox" onclick="myFunction() "name="checkboxG1" id="checkboxG1" class="css-checkbox" /><label for="checkboxG1" class="css-label">Flag Review</label></td>'
+						+ '<br><br><br>'
+
+
+
+
 					);
 
 				});
@@ -122,3 +130,23 @@ console.log(localStorage.getItem('url'));
 
 
 })(jQuery, document, window);
+
+var movieName = localStorage.getItem('movieName');
+console.log(movieName);
+$("#movieName1").val(movieName);
+$("#movieName2").val(movieName);
+// assign function to onclick property of checkbox
+function myFunction() {
+		var x = document.getElementById("checkboxG1");
+		var flag = x.checked;
+
+		var movieId = localStorage.getItem('movieId');
+		var userId = localStorage.getItem('userId');
+
+		var string = 'http://localhost:8080/MovieRatingSystem/reviews?';
+		var queryString = string+'flagStr='+flag+'&movieIdStr='+movieId+'&userIdStr='+userId;
+		alert(queryString);
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open( "GET", queryString, false ); // false for synchronous request
+		xmlHttp.send( null );
+		}
