@@ -52,12 +52,14 @@ CREATE TABLE `Movie_tbl` (
   `numberOfCriticsRated` int(5) DEFAULT NULL,
   `approvalState` varchar(2) DEFAULT NULL,
   `imageLocation` varchar(100) DEFAULT NULL,
+  `movieDescription` varchar(600) DEFAULT NULL,
   
   PRIMARY KEY (`movieId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
-insert into movie_tbl(movieName, releaseYear, genre, aggregateRating, numberOfUsersRated, numberOfCriticsRated, approvalState,imageLocation)
-values('Bahubali', 2015, 'Fantasy/Drama', 8.3, 100, 100, 'A','dummy/Bahubali.jpeg');
+insert into movie_tbl(movieName, releaseYear, genre, aggregateRating, numberOfUsersRated, numberOfCriticsRated, approvalState,imageLocation, movieDescription)
+values('Shawshank Redemption', 1994, 'Drama', 95, 100, 100, 'A','dummy/shawshank.jpeg', 
+'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.');
 
 insert into movie_tbl(movieName, releaseYear, genre, aggregateRating, numberOfUsersRated, numberOfCriticsRated, approvalState,imageLocation)
 values('Bahubali 2', 2017, 'Fantasy/Drama', 9.3, 100, 100, 'A','dummy/Bahubali_2.jpeg');
@@ -66,8 +68,6 @@ SELECT * FROM MOVIE_TBL;
 
 DROP TABLE MOVIE_TBL;
 
-
-
 DROP TABLE REVIEW_TBL;
 
 CREATE TABLE `Review_tbl` (
@@ -75,11 +75,16 @@ CREATE TABLE `Review_tbl` (
     `rating` float(5) DEFAULT NULL,
     `comment` varchar(300) DEFAULT NULL,
     `movieId` int(11) DEFAULT NULL,
-    `flag` varChar(3) DEFAULT NULL,
+    `flag` int(1) DEFAULT NULL,
     `userId` int(11) DEFAULT NULL,
+    `nameUser` varChar(50) DEFAULT NULL,
     
   PRIMARY KEY (`reviewId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+insert into review_tbl(rating, comment, movieId, flag, userId, nameUser)
+values(78,'Good Movie', 1, 0, 1, 'Rishabh');
+
 
 SELECT * FROM REVIEW_TBL;
 

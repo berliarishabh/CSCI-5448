@@ -8,8 +8,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.GetMapping;
+//import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,7 +23,7 @@ public class ReviewController {
 	}
 
 	// add a review by the user
-	@PostMapping("/addreview")
+	@RequestMapping("/addreview")
 	public String addReview(Model model, @RequestParam String ratingStr, @RequestParam String comment, 
 			@RequestParam String userIdStr, @RequestParam String movieIdStr) {
 
@@ -48,8 +48,8 @@ public class ReviewController {
 				// add the comment to database
 				System.out.println("\nAdding review");
 				Review newReview = new Review();
-				newReview.setElements(rating, comment, userId, movieId);
-
+				newReview.setElements(rating, comment, userId, movieId, 
+						PageController.getUser().getName());
 				boolean dbAccessRC = dbProxy.addReview(newReview);
 
 				if (dbAccessRC == true) {
