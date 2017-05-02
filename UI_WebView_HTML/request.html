@@ -65,7 +65,7 @@
 						<div class="breadcrumbs">
 							<a href="index.html">Home</a>
 							<a href="review.html">Movie Review</a>
-							<span>Movie Name</span>
+							<span>Request to Add Movie</span>
 						</div>
 
 						<div class="content">
@@ -92,10 +92,10 @@
 					<div class="row-md-4">
 
 					<div class="col-md-4">
-					<h3>Add/Remove Reviews</h3>
+					<h3>Request to add Movie</h3>
 					<!-- Trigger the modal with a button -->
-					<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#add">Add Review</button>
-					<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#remove">Remove Review</button>
+					<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#add">Add Movie</button>
+					<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#remove">Remove Movie</button>
 
 
 					<!-- Modal -->
@@ -106,16 +106,33 @@
 							<div class="modal-content">
 								<div class="modal-header">
 									<button onclick="test();" type="button" class="close" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title">Add a Review</h4>
+									<h4 class="modal-title">Add a Movie</h4>
 								</div>
 								<div class="modal-body">
 
 								<div id=Rating>
 
 								<form enctype='application/json' name=usrform action=/someendpoint method="POST">
-									<label class="moviename" for "movie">Name:</label>
-									<input id="movieName1" name=movieName value=""/>
-									           <br>Rating:
+									<label class="movieName" for "movieName">Name:</label>
+									<input id="movieName1" name=movieName value=""/> <br>
+									<label class="imageLocation" for "imageLocation">Location:</label>
+									<input id="imageLocation" name=imageLocation value=""/> <br>
+									<label class="movieDescription" for "movieDescription">Description:</label>
+									<input id="movieDescription" name=movieDescription value=""/><br>
+									<label class="releaseYear" for "releaseYear">Year:</label>
+									<input id="releaseYear" name=releaseYear value=""/><br>
+									Genre: <br><select name="genre" id="genre">
+										<option value="">Not Selected</option>
+										<option value="Action">Action</option>
+										<option value="Drama">Drama</option>
+										<option value="Animation">Animation</option>
+										<option value="Horror">Horror</option>
+										<option value="Comedy">Comedy</option>
+										<option value="Fantasy">Fantasy</option>
+										<option value="Sci-Fi">Sci-Fi</option>
+
+									</select>
+									           <br>Base Rating:
 									<input class="star star-5" id="star-5" type="radio" name="1"/>
 									<label class="star star-5" for="star-5"></label>
 									<input class="star star-4" id="star-4" type="radio" name="2"/>
@@ -153,10 +170,10 @@
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title">Remove Movie</h4>
+									<h4 class="modal-title">Cancel</h4>
 								</div>
 								<div class="modal-body">
-									<p>Your review for the movie would be removed.</p>
+									<p>Your request to add movie would be cancelled.</p>
 
 								</div>
 								<div class="modal-footer">
@@ -190,6 +207,10 @@
 										<div class="star-rating" ><span style="width:30%"><strong class="rating"></strong> </span></div>
 									</li>
 								<p> Review: Movie Review of the User 2</p> -->
+								<br> <br> <br>
+								<br> <br> <br>
+								<br> <br> <br>
+
 						</div>
 					</div>
 				</div> <!-- .container -->
@@ -199,8 +220,10 @@
 			</main>
 			<footer class="site-footer">
 				<div class="container">
+					<br> <br> <br> 					<br> <br> <br>
+
 					<div class="rows">
-						<div class="col-md-2">
+						<div class="col-md-4">
 
 						</div>
 					</div> <!-- .row -->
@@ -215,13 +238,8 @@
 
 		<script src="js/jquery-1.11.1.min.js"></script>
 		<script src="js/plugins.js"></script>
-		<script src="js/single.js"></script>
-		<script>
+		<script src="js/apps.js"></script>
 
-    var movieName = localStorage.getItem('movieName');
-		console.log(movieName);
-		$("#movieName1").val(movieName);
-		</script>
 
 	</body>
 

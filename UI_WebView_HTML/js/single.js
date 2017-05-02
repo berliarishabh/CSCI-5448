@@ -51,9 +51,12 @@
 			}
 
 			var url = localStorage.getItem('url');
+			var movieName = localStorage.getItem('movieName');
 			console.log(url);
 			// Add your API endpoint instead of movies.json file
-			loadJSON(url, function(response) {
+			//loadJSON(url, function(response) {
+				loadJSON('movies-single.json', function(response) {
+
 				// Do Something with the response e.g.
 				var object = JSON.parse(response);
 				console.log(object)
@@ -85,7 +88,7 @@
 						'<ul class=movie-meta> '
             + '<p><b>User:  </b>' + val.nameUser + '</p>'
             + '<li><strong>Rating: </strong>'
-            + '<div class=star-rating> <span style=width:' + val.rating + '><strong class=rating></strong> </span></div> </li>'
+            + '<div class=star-rating> <span style=width:' + val.rating + '%><strong class=rating></strong> </span></div> </li>'
             + '<p><b>Review:</b>  '+ val.comment + '</p>'
 						+ '<br>'
 					);
@@ -115,5 +118,7 @@
 	});
 
 console.log(localStorage.getItem('url'));
+//console.log(localStorage.getItem('movieName'));
+
 
 })(jQuery, document, window);
