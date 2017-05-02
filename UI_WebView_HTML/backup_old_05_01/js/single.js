@@ -92,6 +92,8 @@
             + '<p><b>Review:</b>  '+ val.comment + '</p>'
 						+ '<td><input type="checkbox" name="checkboxG1" id="checkboxG1" class="css-checkbox" /><label for="checkboxG1" class="css-label">Flag Review</label></td>'
 						+ '<br>'
+
+
 					);
 
 				});
