@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 //import MRS.Model.Movie;
 //import MRS.Common.DBProxy;
 //import MRS.Model.Movie;
-//import MRS.Model.User;
+import MRS.Model.User;
 
 @Controller
 public class PageController{
 	
-//	static protected User user;
+	static protected User user;
 	static private PageController pc = null;
 //	protected DBProxy dbProxy;
 	
@@ -56,12 +56,12 @@ public class PageController{
 //		}
 //	}
 
-//	public static User getUser() {
-//		return user;
-//	}
-//	public static void setUser(User user) {
-//		PageController.user = user;
-//	}
+	public static User getUser() {
+		return user;
+	}
+	public static void setUser(User user) {
+		PageController.user = user;
+	}
 	public static PageController getPc() {
 		return pc;
 	}

@@ -27,14 +27,14 @@ public class ModeratorController extends PageController{
 		return "welcomeMessage";	// name of the jsp file
 	}
 	
-	@GetMapping("/movie")
-	public String movie(Model model)
-	{
-		List<Movie> mv;
-		mv = dbProxy.getMovies("", 0, 0, 'A');
-		model.addAttribute("moviesList", mv);
-//		model.addAttribute("movieName", mv.get(1).getMovieName());
-//		model.addAttribute("releaseYear", mv.get(0).getReleaseYear());
-		return "movies";	// name of the jsp file
-	}
+//	@GetMapping("/movie")
+//	public String movie(Model model)
+//	{
+//		List<Movie> mv;
+//		mv = dbProxy.getMovies("", 0, 0, 'A');
+//		model.addAttribute("moviesList", mv);
+////		model.addAttribute("movieName", mv.get(1).getMovieName());
+////		model.addAttribute("releaseYear", mv.get(0).getReleaseYear());
+//		return "movies";	// name of the jsp file
+//	}
 }

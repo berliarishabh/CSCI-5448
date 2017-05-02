@@ -7,6 +7,7 @@ import java.util.List;
 import org.hibernate.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+//import org.springframework.format.number.money.CurrencyUnitFormatter;
 
 import MRS.Model.*;
 
@@ -102,7 +103,7 @@ public class DBProxy implements DBProxyInterface {
 	public List<Review> getReviews(int movieId, int userId)
 	{
 		Session session = beginSession();
-		String queried = "from Review where movieId = :movieId";
+		String queried = "from Review";
 		String checkConditions = new String("");
 		if(movieId != 0)
 		{
@@ -114,12 +115,15 @@ public class DBProxy implements DBProxyInterface {
 				checkConditions += " and ";
 			checkConditions += "userId = :userId";
 		}
+		if(checkConditions != "")
+			queried += " where ";
 		queried += checkConditions;
 		Query query = session.createQuery(queried);
 		if(movieId != 0)
 			query.setParameter("movieId", movieId);
 		if(userId != 0)
 			query.setParameter("userId", userId);
+		System.out.println("");
 		@SuppressWarnings("unchecked")
 		List<Review> rv= (List<Review>)query.getResultList();
 		session.close();
@@ -129,6 +133,9 @@ public class DBProxy implements DBProxyInterface {
 	public boolean addMovie(Movie mv)
 	{
 		Session session = beginSession();
+		mv.setNumberOfCriticsRated(0);
+		mv.setNumberOfUsersRated(0);
+		mv.setAggregateRating(0);
 		Transaction tx = session.beginTransaction();
 		try{
 			session.save(mv);
@@ -157,7 +164,45 @@ public class DBProxy implements DBProxyInterface {
 			return false;
 		}
 		session.close();
+		this.updateRating(rv, true);
 		return true;
+	}
+
+	public boolean deleteReview(Review rv)
+	{
+		// update the rating stats for the movie before removing the comment
+		this.updateRating(rv, false);
+
+		Session session = beginSession();
+		Transaction tx = session.beginTransaction();
+		try{
+			session.delete(rv);
+			tx.commit();
+		}
+		catch(Exception e){
+			System.out.println("Adding Review - exception is " + e.getMessage());
+			session.close();
+			return false;
+		}
+		session.close();
+		return true;
+	}
+	
+	public boolean updateReview(Review rv)
+	{
+		Session session = beginSession();
+		Transaction tx = session.beginTransaction();
+		try{
+			session.update(rv);
+			tx.commit();
+		}
+		catch(Exception e){
+			System.out.println("Updating review - exception is " + e.getMessage());
+			session.close();
+			return false;
+		}
+		session.close();
+		return true;		
 	}
 	
 	public boolean addUser(User user)
@@ -177,5 +222,88 @@ public class DBProxy implements DBProxyInterface {
 		return true;
 	}
 	
+	public boolean updateMovie(Movie mv)
+	{
+		Session session = beginSession();
+		Transaction tx = session.beginTransaction();
+		try{
+			session.update(mv);
+			tx.commit();
+		}
+		catch(Exception e){
+			System.out.println("Updating movie - exception is " + e.getMessage());
+			session.close();
+			return false;
+		}
+		session.close();
+		return true;
+	}
+
+	public boolean updateRating(Review rv, boolean newReview)
+	{
+		Session session = beginSession();
+		String queried = "from Movie where movieId = :movieId";
+		System.out.println("rv.getMovieId() is " + rv.getMovieId());
+		Query query = session.createQuery(queried);
+		query.setParameter("movieId", rv.getMovieId());
+		@SuppressWarnings("unchecked")
+		List<Movie> mvLs= (List<Movie>)query.getResultList();
+		Movie mv = null;
+		if(!mvLs.isEmpty())
+				mv = mvLs.get(0);
+		else
+			return false;
+		double userRating = rv.getRating();
+		double currRating = mv.getAggregateRating();
+		int numOfUsers = mv.getNumberOfUsersRated();
+		int numOfCritics = mv.getNumberOfUsersRated();
+		double userWeightedRating = userRating;	// this will be weighted
+		
+		queried = "from User where userId = :userId";
+		query = session.createQuery(queried);
+		query.setParameter("userId", rv.getUserId());
+		User user= (User)query.getResultList().get(0);
+		session.close();
+
+		double currWeightedSum = currRating * ((numOfCritics * 0.6) + (numOfUsers * 0.4));
+		System.out.println("currWeightedSum is " + currWeightedSum);
+
+		if (newReview == true)			// add new review
+		{
+			if(user.getUserRoleId() == 4)
+			{
+				userWeightedRating = userRating * (0.4);
+				numOfUsers++;
+				mv.setNumberOfUsersRated(numOfUsers);
+			}
+			else if(user.getUserRoleId() == 3)
+			{
+				userWeightedRating = userRating * (0.6);
+				numOfCritics++;
+				mv.setNumberOfCriticsRated(numOfCritics);
+			}
+		}
+		else							// deleting an existing review
+		{
+			if(user.getUserRoleId() == 4)
+			{
+				userWeightedRating = (-1) * userRating * (0.4);
+				numOfUsers--;
+				mv.setNumberOfUsersRated(numOfUsers);
+			}
+			else if(user.getUserRoleId() == 3)
+			{
+				userWeightedRating = (-1) * userRating * (0.6);
+				numOfCritics--;
+				mv.setNumberOfCriticsRated(numOfCritics);
+			}
+		}
+		double newAggregateRating	= (currWeightedSum + userWeightedRating) / ((numOfCritics * 0.6) + (numOfUsers * 0.4));
+		System.out.println("newAggRating is " + newAggregateRating);
+		mv.setAggregateRating(newAggregateRating);
+		this.updateMovie(mv);
+		return true;
+
+	}
 	
 }

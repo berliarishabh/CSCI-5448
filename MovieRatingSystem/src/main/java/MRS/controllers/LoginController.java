@@ -10,8 +10,10 @@ import MRS.Model.User;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -20,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController {
 	private DBProxy dbProxy;
 	private static User user = null;
-	private boolean loginState = false;
+	private static boolean loginState = false;
 	
 	private LoginController()
 	{
@@ -36,7 +38,7 @@ public class LoginController {
 	}
 
 	public void setLoginState(boolean loginState) {
-		this.loginState = loginState;
+		LoginController.loginState = loginState;
 	}
 	
 	public static boolean isLoggedIn()
@@ -63,7 +65,7 @@ public class LoginController {
 				return "joinus";
 			}
 			this.setLoginState(true);
-			retVal = "redirect:" + "/movies";	// name of the jsp file
+			retVal = "redirect:" + "/review.html";	// name of the jsp file
 		}
 		else
 		{
@@ -73,4 +75,14 @@ public class LoginController {
 		}
 		return retVal;
 	}
+
+	@RequestMapping("/logout")
+	public String logout(Model model)
+	{
+		LoginController.setUser(null);
+		System.out.println("User logged out");
+		this.setLoginState(false);
+		//model.addAttribute("returnMessage", "Logout Successful");
+		return "joinus";
+	}	
 }
