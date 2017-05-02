@@ -57,6 +57,7 @@ public class LoginController {
 		if(result == true)
 		{
 			LoginController.setUser(dbProxy.getUserDetails(name, password));
+			PageController.setUser(dbProxy.getUserDetails(name, password));
 			String page = PageControllerFactory.createPageController(user);
 			if(page == "")
 			{
@@ -81,6 +82,7 @@ public class LoginController {
 	public String logout(Model model)
 	{
 		LoginController.setUser(null);
+		PageController.setUser(null);
 		System.out.println("User logged out");
 		this.setLoginState(false);
 		//model.addAttribute("returnMessage", "Logout Successful");

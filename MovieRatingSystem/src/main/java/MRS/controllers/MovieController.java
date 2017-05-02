@@ -48,26 +48,24 @@ public class MovieController {
 	public @ResponseBody Map<String, List<Movie>> movies(Model model, @RequestParam String genre,
 			@RequestParam String releaseYear, @RequestParam String aggregateRating)
 	{
-		if(!LoginController.isLoggedIn())
-			return null;
-		user = LoginController.getUser();
+		char approvalState = 'A';
+//		if(!LoginController.isLoggedIn())
+//			return null;
+//		user = LoginController.getUser();
+//		if(user.getUserRoleId() == 4){
+//			approvalState = 'A';
+//		}
+//		else if(user.getUserRoleId() == 3){
+//			approvalState = 'A';
+//		}
 		Map<String, List<Movie>> map = new HashMap<String, List<Movie>>();
 		int rYear = 0; 
 		double aggRating = 0;
-		char approvalState = 'A';
 		if(releaseYear != "")
 			rYear =	Integer.parseInt(releaseYear);
-//		if(aggregateRating != "")
-//			aggRating = Double.parseDouble(aggregateRating);
 		if(genre == "")
 			genre = "";
 		System.out.println(genre + ":" + releaseYear + ":"  + aggregateRating); 
-		if(user.getUserRoleId() == 4){
-			approvalState = 'A';
-		}
-		else if(user.getUserRoleId() == 3){
-			approvalState = 'A';
-		}
 		List<Movie> mv = dbProxy.getMovies(genre, rYear, aggRating, approvalState);
 		if(aggregateRating == "L")
 			Collections.sort(mv, new CustomComparator(1));
@@ -78,7 +76,7 @@ public class MovieController {
 	}
 	
 	// add a movie by the user
-	@PostMapping("/addmovie")
+	@RequestMapping("/addmovie")
 	public String addMovie(Model model, @RequestParam String movieName, 
 			@RequestParam String imageLocation, @RequestParam String releaseYear, 
 			@RequestParam String aggregateRating, @RequestParam String genre, 
@@ -87,9 +85,9 @@ public class MovieController {
 		String retval = "joinus";	// return to the login page
 
 		if (LoginController.isLoggedIn() == true) {				// check if the user is logged in
-			if(PageController.getUser().getUserId()== 1 || PageController.getUser().getUserId()== 2)
+			if(PageController.getUser().getUserId()== 4 )
 				return retval;
-			double aggRating = Double.parseDouble(aggregateRating);
+			double aggRating = 0;
 			int rYear	= Integer.parseInt(releaseYear);
 			char approvalState = 'P';
 			System.out.println("\nAdding Movie");

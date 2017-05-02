@@ -37,6 +37,9 @@ values(4, 'Rishabh', 'Huddar', 'ribe3261', 'ribe3261@colorado.edu');
 insert into user_tbl(userRoleId, name, password, username, emailAddress)
 values(1, 'Shiva', 'sck', 'shgu4085', 'shgu4085@colorado.edu');
 
+insert into user_tbl(userRoleId, name, password, username, emailAddress)
+values(3, 'Omkar', 'omse', 'omse6306', 'omse6306@colorado.edu');
+
 SELECT * FROM USER_TBL;
 SELECT * FROM User_tbl;
 
