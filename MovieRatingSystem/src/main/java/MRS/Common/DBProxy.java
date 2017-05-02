@@ -101,7 +101,7 @@ public class DBProxy implements DBProxyInterface {
 		return mv;
 	}
 	
-	public List<Review> getReviews(int movieId, int userId)
+	public List<Review> getReviews(int movieId, int userId, int flag)
 	{
 		Session session = beginSession();
 		String queried = "from Review";
@@ -116,12 +116,20 @@ public class DBProxy implements DBProxyInterface {
 				checkConditions += " and ";
 			checkConditions += "userId = :userId";
 		}
+		if(userId !=0)
+		{
+			if(checkConditions!="")
+				checkConditions += " and ";
+			checkConditions += "flag = :flag";
+		}
 		if(checkConditions != "")
 			queried += " where ";
 		queried += checkConditions;
 		Query query = session.createQuery(queried);
 		if(movieId != 0)
 			query.setParameter("movieId", movieId);
+		if(flag != 0)
+			query.setParameter("flag", flag);
 		if(userId != 0)
 			query.setParameter("userId", userId);
 		System.out.println("");

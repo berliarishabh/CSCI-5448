@@ -1,24 +1,15 @@
 package MRS.controllers;
 
 import MRS.Common.DBProxy;
-//import java.util.List;
-//
-//import MRS.Model.*;
 import MRS.Model.User;
-
-//import javax.validation.OverridesAttribute.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-//@RequestMapping("/login")
 public class LoginController {
 	private DBProxy dbProxy;
 	private static User user = null;
@@ -85,7 +76,6 @@ public class LoginController {
 		PageController.setUser(null);
 		System.out.println("User logged out");
 		this.setLoginState(false);
-		//model.addAttribute("returnMessage", "Logout Successful");
 		return "joinus";
 	}	
 }
