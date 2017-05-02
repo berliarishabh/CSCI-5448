@@ -46,13 +46,7 @@
 							<li class="menu-item"><a href="index.html">Home</a></li>
 							<li class="menu-item"><a href="about.html">About</a></li>
 							<li class="menu-item current-menu-item"><a href="review.html">Movie reviews</a></li>
-<<<<<<< HEAD
 							<li class="menu-item"><a href="joinus.jsp">Welcome</a></li>
-=======
-							<li class="menu-item"><a href="request.html">Add a movie</a></li>
-							<li class="menu-item"><a href=/logout>Logout</a></li>
-
->>>>>>> 1ea1cfe911045d5118747518180f14ba3e47d87e
 						</ul> <!-- .menu -->
 
 						<form action="#" class="search-form">
@@ -71,7 +65,7 @@
 						<div class="breadcrumbs">
 							<a href="index.html">Home</a>
 							<a href="review.html">Movie Review</a>
-							<span>Movie Name</span>
+							<span>Request to Add Movie</span>
 						</div>
 
 						<div class="content">
@@ -98,80 +92,13 @@
 					<div class="row-md-4">
 
 					<div class="col-md-4">
-					<h3>Add/Remove Reviews</h3>
+					<h3>Admin/Moderator Control Page</h3>
 					<!-- Trigger the modal with a button -->
-					<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#add">Add Review</button>
-					<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#remove">Remove Review</button>
+					<button type="button" class="btn btn-info btn-lg" >Approve Movie Requests</button>
+					<button type="button" class="btn btn-info btn-lg" >Check Flaged Reviews</button>
 
 
-					<!-- Modal -->
-					<div class="modal fade" id="add" role="dialog">
-						<div class="modal-dialog">
 
-							<!-- Modal content-->
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title">Add a Review</h4>
-								</div>
-								<div class="modal-body">
-
-								<div id=Rating>
-
-								<form name=usrform action=http://localhost:8080/MovieRatingSystem/addreview method="POST">
-									<label class="moviename" for "movie">Name:</label>
-									<input id="movieName1" name=movieName value=""/>
-									<label class="ratingStr" for "rating">Rating:</label>
-									<input id="ratingStr" name=ratingStr value=""/>
-
-								</div>
-
-									<div id="comment"><br>Review:
-									<textarea rows="4" cols="50" name="comment" placeholder="Enter Review" >
-									</textarea>
-							</div>
-
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-									<button type="submit" class="btn btn-default" value="Submit">Submit</button>
-								</div>
-							</form>
-
-							</div>
-
-						</div>
-					</div>
-					<!-- Modal -->
-					<div class="modal fade" id="remove" role="dialog">
-						<div class="modal-dialog">
-
-							<!-- Modal content-->
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title">Remove Movie</h4>
-								</div>
-								<div class="modal-body">
-									<p>Your review for the movie would be removed.</p>
-
-								</div>
-								<div class="modal-footer">
-									<form action=http://localhost:8080/MovieRatingSystem/deletereview>
-									<label class="moviename" for "movie">Name:</label>
-									<input id="movieName2" name=movieName value=""/>
-									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-									<button type="submit" class="btn btn-default">Delete</button>
-								</form>
-
-								</div>
-							</div>
-
-						</div>
-					</div>
-
-				</div>
-			</div>
 
 							</div> <!-- .row -->
 
@@ -189,6 +116,10 @@
 										<div class="star-rating" ><span style="width:30%"><strong class="rating"></strong> </span></div>
 									</li>
 								<p> Review: Movie Review of the User 2</p> -->
+								<br> <br> <br>
+								<br> <br> <br>
+								<br> <br> <br>
+
 						</div>
 					</div>
 				</div> <!-- .container -->
@@ -198,8 +129,10 @@
 			</main>
 			<footer class="site-footer">
 				<div class="container">
+					<br> <br> <br> 					<br> <br> <br>
+
 					<div class="rows">
-						<div class="col-md-2">
+						<div class="col-md-4">
 
 						</div>
 					</div> <!-- .row -->
@@ -214,11 +147,8 @@
 
 		<script src="js/jquery-1.11.1.min.js"></script>
 		<script src="js/plugins.js"></script>
-		<script src="js/single.js"></script>
-		<script>
+		<script src="js/apps.js"></script>
 
-
-		</script>
 
 	</body>
 
