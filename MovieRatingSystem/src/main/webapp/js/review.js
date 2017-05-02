@@ -41,7 +41,7 @@
 			function loadJSON(endpoint, callback) {
 				var xobj = new XMLHttpRequest();
 				xobj.overrideMimeType("application/json");
-				xobj.open('POST', endpoint, true);
+				xobj.open('POST', endpoint, true); //method, url, async
 				xobj.onreadystatechange = function() {
 					if (xobj.readyState == 4 && xobj.status == "200") {
 						callback(xobj.responseText);
@@ -51,7 +51,9 @@
 			}
 
 			// Add your API endpoint instead of movies.json file
-			loadJSON('http://localhost:8080/MovieRatingSystem/movies?movieName&releaseYear&aggregateRating', function(response) {
+			loadJSON('http://localhost:8080/MovieRatingSystem/movies?genre&releaseYear&aggregateRating', function(response) {
+		//		loadJSON('movies.json', function(response) {
+
 				// Do Something with the response e.g.
 				var object = JSON.parse(response);
 				console.log(object)
@@ -62,16 +64,17 @@
 				$.each(object["movieList"], function(key, val) {
 
 					// check this out in the console to see what I'm saying
-					console.log("Movie " + key, val);
+					//console.log("Movie " + key, val);
 
 					// Create a data structure out of each movie object and append to items array
 					items.push(
 						'<div class=movie> '
-						+ '<div class="movie-title">' + '<a href=single.html>' + val.name + '</a></div>'
-						+ '<figure class="movie-poster">' + '<img src= ' + val.image + '></figure>'
-						+ '<div class=year>' + 'Year: ' + val.year + '</div>'
+						+ '<div class="movie-id" id='+ val.movieId + '> </div>'
+						+ '<div class="movie-title">' + '<a href=single.html>' + val.movieName + '</a></div>'
+						+ '<figure class="movie-poster">' + '<img src= ' + val.imageLocation + '></figure>'
+						+ '<div class=year>' + 'Year: ' + val.releaseYear + '</div>'
 						+ '<div class=genre>' + 'Genre: ' + val.genre + '</div>'
-            + '<div class=star-rating> <span style=width:' + val.rating + '><strong class="rating"></strong> </span></div>'
+            + '<div class=star-rating> <span style=width:' + val.aggregateRating + '><strong class="rating"></strong> </span></div>'
 						+ '</div>'
 					);
 				});

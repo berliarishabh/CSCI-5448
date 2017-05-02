@@ -20,13 +20,14 @@ public class Review {
 	@Column(name = "reviewId")
 	private int reviewId;
 	
-	public void setElements(double rating, String comment, int userId, int movieId)
+	public void setElements(double rating, String comment, int userId, int movieId, String nameUser)
 	{
 		this.setRating(rating);
 		this.setComment(comment);
 		this.setUserId(userId);
 		this.setMovieId(movieId);
 		this.setFlag(false);
+		this.setNameUser(nameUser);
 	}
 
 	@Column(name = "rating")
@@ -43,6 +44,17 @@ public class Review {
 
 	@Column(name = "movieId")
 	private int movieId;
+	
+	@Column(name = "nameUser")
+	private String nameUser;
+
+	public String getNameUser() {
+		return nameUser;
+	}
+
+	public void setNameUser(String nameUser) {
+		this.nameUser = nameUser;
+	}
 
 	public int getReviewId() {
 		return reviewId;

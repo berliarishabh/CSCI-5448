@@ -48,8 +48,8 @@ public class ReviewController {
 				// add the comment to database
 				System.out.println("\nAdding review");
 				Review newReview = new Review();
-				newReview.setElements(rating, comment, userId, movieId);
-
+				newReview.setElements(rating, comment, userId, movieId, 
+						PageController.getUser().getName());
 				boolean dbAccessRC = dbProxy.addReview(newReview);
 
 				if (dbAccessRC == true) {
