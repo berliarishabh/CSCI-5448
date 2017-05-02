@@ -1,5 +1,7 @@
 package MRS.controllers;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +19,19 @@ import MRS.Common.DBProxy;
 import MRS.Model.Movie;
 import MRS.Model.Review;
 import MRS.Model.User;
+
+class CustomComparator implements Comparator<Movie> {
+	
+	private int order = 1;
+	public CustomComparator(int order) {
+		this.order = order;
+	}
+	
+    @Override
+    public int compare(Movie m1, Movie m2) {
+        return order * (int)(m1.getAggregateRating() - m2.getAggregateRating());
+    }
+}
 
 @Controller
 public class MovieController {
@@ -42,8 +57,8 @@ public class MovieController {
 		char approvalState = 'A';
 		if(releaseYear != "")
 			rYear =	Integer.parseInt(releaseYear);
-		if(aggregateRating != "")
-			aggRating = Double.parseDouble(aggregateRating);
+//		if(aggregateRating != "")
+//			aggRating = Double.parseDouble(aggregateRating);
 		if(genre == "")
 			genre = "";
 		System.out.println(genre + ":" + releaseYear + ":"  + aggregateRating); 
@@ -54,6 +69,10 @@ public class MovieController {
 			approvalState = 'A';
 		}
 		List<Movie> mv = dbProxy.getMovies(genre, rYear, aggRating, approvalState);
+		if(aggregateRating == "L")
+			Collections.sort(mv, new CustomComparator(1));
+		else if(aggregateRating == "H")
+			Collections.sort(mv, new CustomComparator(-1));
 		map.put("movieList", mv);
 		return map;	// name of the jsp file
 	}

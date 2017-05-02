@@ -69,6 +69,7 @@ public class LoginController {
 		}
 		else
 		{
+			System.out.println("Invalid Credentials");
 			model.addAttribute("errorMessage", "Invalid Credentials");
 			this.setLoginState(false);
 			retVal = "joinus";

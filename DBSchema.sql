@@ -61,8 +61,9 @@ insert into movie_tbl(movieName, releaseYear, genre, aggregateRating, numberOfUs
 values('Shawshank Redemption', 1994, 'Drama', 95, 100, 100, 'A','dummy/shawshank.jpeg', 
 'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.');
 
-insert into movie_tbl(movieName, releaseYear, genre, aggregateRating, numberOfUsersRated, numberOfCriticsRated, approvalState,imageLocation)
-values('Bahubali 2', 2017, 'Fantasy/Drama', 9.3, 100, 100, 'A','dummy/Bahubali_2.jpeg');
+insert into movie_tbl(movieName, releaseYear, genre, aggregateRating, numberOfUsersRated, numberOfCriticsRated, approvalState,imageLocation, movieDescription)
+values('Forrest Gump', 2014, 'Comedy', 92, 1002, 1200, 'A','dummy/forrestgump.jpeg', 
+'Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque.');
 
 SELECT * FROM MOVIE_TBL;
 

@@ -65,7 +65,7 @@ public class DBProxy implements DBProxyInterface {
 	{
 		Session session = beginSession();
 		String queried = "from Movie";
-		String checkConditions = new String("");
+		String checkConditions = "";
 		if(genre != "")
 		{
 			checkConditions = "genre = :genre";
@@ -82,8 +82,9 @@ public class DBProxy implements DBProxyInterface {
 				checkConditions += " and ";
 			checkConditions += "aggregateRating = :aggregateRating";
 		}
+		queried += " where approvalState = :approvalState";
 		if(checkConditions != "")
-			queried += " where approvalState = :approvalState ";
+			queried += " and ";
 		queried += checkConditions;
 		System.out.println("query is " + queried);
 		Query query = session.createQuery(queried);
