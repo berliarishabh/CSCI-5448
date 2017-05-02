@@ -1,43 +1,122 @@
 {
     "movieList": [
     {
-    "id" : 1,
-    "name" : "Shawshank Redemption",
-    "year" : "1994",
+    "movieId" : 1,
+    "movieName" : "Shawshank Redemption",
+    "releaseYear" : "1994",
     "genre" : "Drama",
-    "rating" : "95%",
-    "image" : "dummy/shawshank.jpeg",
-    "desc" : "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."
+    "aggregateRating" : "95%",
+    "imageLocation" : "dummy/shawshank.jpeg",
+    "movieDescription" : "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."
     },
     {
-    "id" : 2,
-    "name" : "Fight Club",
-    "year" : "1999",
+    "movieId" : 2,
+    "movieName" : "Fight Club",
+    "releaseYear" : "1999",
     "genre" : "Action",
-    "rating" : "80%",
-    "image" : "dummy/fightclub.jpeg",
-    "desc" : "An insomniac office worker, looking for a way to change his life, crosses paths with a devil-may-care soap maker, forming an underground fight club that evolves into something much, much more. "
+    "aggregateRating" : "80%",
+    "imageLocation" : "dummy/fightclub.jpeg",
+    "movieDescription" : "An insomniac office worker, looking for a way to change his life, crosses paths with a devil-may-care soap maker, forming an underground fight club that evolves into something much, much more. "
     },
     {
-    "id" : 3,
-    "name" : "October Sky",
-    "year" : "1999",
+    "movieId" : 3,
+    "movieName" : "October Sky",
+    "releaseYear" : "1999",
     "genre" : "Biography",
-    "rating" : "75%",
-    "image" : "dummy/octobersky.jpeg",
-    "desc" : "Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque."
+    "aggregateRating" : "75%",
+    "imageLocation" : "dummy/octobersky.jpeg",
+    "movieDescription" : "Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque."
+    },
+    {
+    "movieId" : 4,
+    "movieName" : "Forrest Gump",
+    "releaseYear" : "1994",
+    "genre" : "Comedy",
+    "aggregateRating" : "70%",
+    "imageLocation" : "dummy/forrestgump.jpeg",
+    "movieDescription" : "Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque."
 
-  },
-  {
-  "id" : 4,
-  "name" : "Forrest Gump",
-  "year" : "1994",
-  "genre" : "Comedy",
-  "rating" : "70%",
-  "image" : "dummy/forrestgump.jpeg",
-  "desc" : "Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque."
+    },
+    {
+    "movieId" : 5,
+    "movieName" : "Snatch",
+    "releaseYear" : "1994",
+    "genre" : "Comedy",
+    "aggregateRating" : "68%",
+    "imageLocation" : "dummy/snatch.jpeg",
+    "movieDescription" : "Unscrupulous boxing promoters, violent bookmakers, a Russian gangster, incompetent amateur robbers, and supposedly Jewish jewelers fight to track down a priceless stolen diamond. "
 
-  }
+    },
+    {
+    "movieId" : 6,
+    "movieName" : "Gaurdians of the Galaxy",
+    "releaseYear" : "2017",
+    "genre" : "Sci-Fi",
+    "aggregateRating" : "88%",
+    "imageLocation" : "dummy/gotg.jpeg",
+    "movieDescription" : "Set to the backdrop of Awesome Mixtape #2, 'Guardians of the Galaxy Vol. 2' continues the team's adventures as they unravel the mystery of Peter Quill's true parentage.  "
+
+    },
+    {
+    "movieId" : 7,
+    "movieName" : "Sing Street",
+    "releaseYear" : "2016",
+    "genre" : "Music",
+    "aggregateRating" : "78%",
+    "imageLocation" : "dummy/singstreet.jpeg",
+    "movieDescription" : "A boy growing up in Dublin during the 1980s escapes his strained family life by starting a band to impress the mysterious girl he likes. "
+
+    },
+    {
+      "movieId" : 8,
+      "movieName" : "Arrival",
+      "releaseYear" : "2016",
+      "genre" : "Sci-Fi",
+      "aggregateRating" : "92%",
+      "imageLocation" : "dummy/arrival.jpeg",
+      "movieDescription" : " When twelve mysterious spacecraft appear around the world, linguistics professor Louise Banks is tasked with interpreting the language of the apparent alien visitors.  "
+
+    },
+    {
+      "movieId" : 9,
+      "movieName" : "Deadpool",
+      "releaseYear" : "2016",
+      "genre" : "Action",
+      "aggregateRating" : "80%",
+      "imageLocation" : "dummy/deadpool.jpeg",
+      "movieDescription" : "  A fast-talking mercenary with a morbid sense of humor is subjected to a rogue experiment that leaves him with accelerated healing powers and a quest for revenge.  "
+
+    },
+    {
+      "movieId" : 10,
+      "movieName" : "Minions",
+      "releaseYear" : "2015",
+      "genre" : "Animation",
+      "aggregateRating" : "60%",
+      "imageLocation" : "dummy/minions.jpeg",
+      "movieDescription" : "   Minions Stuart, Kevin and Bob are recruited by Scarlet Overkill, a super-villain who, alongside her inventor husband Herb, hatches a plot to take over the world.   "
+
+    },
+    {
+      "movieId" : 11,
+      "movieName" : "Dirty Grandpa",
+      "releaseYear" : "2016",
+      "genre" : "Comedy",
+      "aggregateRating" : "40%",
+      "imageLocation" : "dummy/dirtygrandpa.jpeg",
+      "movieDescription" : "Right before his wedding, an uptight guy is tricked into driving his grandfather, a lecherous former Army Lieutenant-Colonel, to Florida for spring break.  "
+
+    },
+    {
+      "movieId" : 12,
+      "movieName" : "The Conjuring",
+      "releaseYear" : "2013",
+      "genre" : "Horror",
+      "aggregateRating" : "70%",
+      "imageLocation" : "dummy/conjuring.jpeg",
+      "movieDescription" : "Paranormal investigators Ed and Lorraine Warren work to help a family terrorized by a dark presence in their farmhouse.   "
+
+    }
 
 ]
 }
