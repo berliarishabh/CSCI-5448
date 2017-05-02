@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import MRS.Common.DBProxy;
 //import MRS.Common.DBProxy;
 //import MRS.Model.Movie;
+import MRS.Model.User;
 
 public class AdminController extends PageController{
 	
@@ -20,12 +21,13 @@ public class AdminController extends PageController{
 		dbProxy = new DBProxy();
 	}
 	
-	public String nameUser(Model model)
+	public User getUser(Model model)
 	{
 		System.out.println("In name user AdminController");
-		String result = user.getName();
-		model.addAttribute("firstName", result);
-		return "welcomeMessage";	// name of the jsp file
+		User user = dbProxy.getUserDetails(PageController.getUser().getUsername(), 
+				PageController.getUser().getPassword());
+//		model.addAttribute("firstName", result);
+		return user;	// name of the jsp file
 	}
 	
 ////	@GetMapping("/movies")

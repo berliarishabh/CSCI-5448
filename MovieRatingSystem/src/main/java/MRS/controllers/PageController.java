@@ -1,5 +1,8 @@
 package MRS.controllers;
 
+import java.util.HashMap;
+import java.util.Map;
+
 //import java.util.HashMap;
 //import java.util.List;
 //import java.util.Map;
@@ -9,7 +12,9 @@ package MRS.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 //import MRS.Model.Movie;
 //import MRS.Common.DBProxy;
@@ -69,30 +74,16 @@ public class PageController{
 		PageController.pc = pc;
 	}
 	
-	@GetMapping("/user")
-	public String nameUser(Model model)
+	@RequestMapping("/user")
+	public @ResponseBody Map<String, User> getUserDetails(Model model)
 	{
-		System.out.println("In name user PageController");
-		String res = getPc().nameUser(model);
-		return res;
+		Map<String, User> map = new HashMap<String, User>();
+		System.out.println("In getUserDetails PageController");
+		if(PageController.getUser() == null)
+			return null;
+		map.put("userDetails", user);
+		return map;
 	}
-	
-//	@GetMapping("/movies")
-//	public @ResponseBody Map<String, List<Movie>> moviess(Model model)
-//	{
-//		Map<String, List<Movie>> map = new HashMap<String, List<Movie>>();
-////		Movie mv = new Movie();
-////		mv.setAggregateRating(7.4);
-////		mv.setApprovalState('A');
-////		mv.setGenre("Horror");
-////		mv.setMovieName("Insidious");
-////		mv.setNumberOfCriticsRated(99);
-////		mv.setNumberOfUsersRated(99);
-////		mv.setReleaseYear(2011);
-//		List<Movie> mv = getPc().movies(model);
-//		map.put("movieList", mv);
-//		return map;	// name of the jsp file
-//	}
 	
 //	public List<Movie> movies(Model model)
 //	{
