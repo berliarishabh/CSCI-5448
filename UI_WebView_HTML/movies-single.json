@@ -1,15 +1,3 @@
-{
-
-    "id" : 1,
-    "name" : "Shawshank Redemption",
-    "year" : "1994",
-    "genre" : "Drama",
-    "rating" : "95%",
-    "image" : "dummy/shawshank.jpeg",
-    "desc" : "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
-    "reviewList" : [{"username" : "Rishabh", "rating" : "80%", "comment" : "A classic. Fear holds you back, hope is what sets you free"},{"username" : "Omkar", "rating" : "90%", "comment" : "Supera Movie! Better than Bahubali! Appa"},{"username" : "Shiva", "rating" : "20%", "comment" : "I loved it but I do not give high rating!"}]
-}
-
 
 {
   "movieDescription": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",

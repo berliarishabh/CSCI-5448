@@ -64,6 +64,7 @@
 
 						<div class="filters">
 							<select name="genre" id="genre">
+								<option value="">Not Selected</option>
 								<option value="Action">Action</option>
 								<option value="Drama">Drama</option>
 								<option value="Animation">Animation</option>
@@ -74,6 +75,7 @@
 
 							</select>
 							<select name="releaseYear" id="releaseYear">
+								<option value="">Not Selected</option>
 								<option value="2013">2013</option>
 								<option value="2014">2014</option>
 								<option value="2015">2015</option>
@@ -82,6 +84,7 @@
 							</select>
 
 							<select name="aggregateRating" id="aggregateRating">
+								<option value="">Not Selected</option>
 								<option value="H">Highest Rated First</option>
 								<option value="L">Lowest Rated First</option>
 							</select>
@@ -125,42 +128,6 @@
 		<script src="js/review.js"></script>
 
 <script>
-//Create the Selection to a JSON object array
-$('#go').on("click", function() {
-var objVal = {};
-$('select').each(function() {
-var arr = $(':selected', this).map(function() {
-	return this.value;
-}).get();
-objVal[$(this).attr("name")] = arr;
-});
-//Parse the String
-var string = encodeQueryData(objVal);
-var querystring = 'http://localhost:8080/MovieRatingSystem/movies?' + string;
-console.log(querystring);
-
-//Post Req to endpoint
-var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
-xmlhttp.open("POST", querystring);
-xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-xmlhttp.send(JSON.stringify(objVal));
-console.log(objVal);
-
-});
-
-//JSON to URL String
-function encodeQueryData(data) {
-   let ret = [];
-   for (let d in data)
-     ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
-   return ret.join('&');
-}
-
-//TEST
-// var data = { 'first name': ['George'], 'last name': ['Jetson'], 'age': [110] };
-// var querystring = encodeQueryData(data);
-// console.log(data);
-// console.log(querystring);
 
 </script>
 

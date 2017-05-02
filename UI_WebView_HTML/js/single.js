@@ -31,7 +31,7 @@
 					}
 				},
 				marker:{
-					address: "40 Sibley St, Detroit",
+					address: "1111 Engineering Drive, Boulder",
 				}
 			},
 			"autofit" );
@@ -50,8 +50,13 @@
 				xobj.send(null);
 			}
 
+			var url = localStorage.getItem('url');
+			var movieName = localStorage.getItem('movieName');
+			console.log(url);
 			// Add your API endpoint instead of movies.json file
-			loadJSON('movies-single-1.json', function(response) {
+			//loadJSON(url, function(response) {
+				loadJSON('movies-single.json', function(response) {
+
 				// Do Something with the response e.g.
 				var object = JSON.parse(response);
 				console.log(object)
@@ -60,12 +65,12 @@
         moviedata.push(
 
           '<div class="col-md-4">'
-          + '<figure class="movie-poster">' + '<img src= ' + object.image + '></figure> </div>'
-          + '<div class="col-md-4"> <h2 class=movie-title>'+ object.name +'</h2>'
-          + '<div class="movie-summary"> <p>' + object.desc + '</p>'
-          + '<div class=year>' + 'Year: ' + object.year + '</div>'
+          + '<figure class="movie-poster">' + '<img src= ' + object.imageLocation + '></figure> </div>'
+          + '<div class="col-md-4"> <h2 class=movie-title>'+ object.movieName +'</h2>'
+          + '<div class="movie-summary"> <p>' + object.movieDescription + '</p>'
+          + '<div class=year>' + 'Year: ' + object.releaseYear + '</div>'
           + '<div class=genre>' + 'Genre: ' + object.genre + '</div>'
-          + '<div class=star-rating> <span style=width:' + object.rating + '><strong class="rating"></strong> </span></div>'
+          + '<div class=star-rating> <span style=width:' + object.aggregateRating + '%><strong class="rating"></strong> </span></div>'
           + '</div>'
         );
 
@@ -81,9 +86,9 @@
 				//	Create a data structure out of each review object and append to items array
 					items.push(
 						'<ul class=movie-meta> '
-            + '<p><b>User:  </b>' + val.username + '</p>'
+            + '<p><b>User:  </b>' + val.nameUser + '</p>'
             + '<li><strong>Rating: </strong>'
-            + '<div class=star-rating> <span style=width:' + val.rating + '><strong class=rating></strong> </span></div> </li>'
+            + '<div class=star-rating> <span style=width:' + val.rating + '%><strong class=rating></strong> </span></div> </li>'
             + '<p><b>Review:</b>  '+ val.comment + '</p>'
 						+ '<br>'
 					);
@@ -111,5 +116,9 @@
 	$(window).load(function() {
 
 	});
+
+console.log(localStorage.getItem('url'));
+//console.log(localStorage.getItem('movieName'));
+
 
 })(jQuery, document, window);

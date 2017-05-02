@@ -37,6 +37,9 @@ values(4, 'Rishabh', 'Huddar', 'ribe3261', 'ribe3261@colorado.edu');
 insert into user_tbl(userRoleId, name, password, username, emailAddress)
 values(1, 'Shiva', 'sck', 'shgu4085', 'shgu4085@colorado.edu');
 
+insert into user_tbl(userRoleId, name, password, username, emailAddress)
+values(3, 'Omkar', 'omse', 'omse6306', 'omse6306@colorado.edu');
+
 SELECT * FROM USER_TBL;
 SELECT * FROM User_tbl;
 
@@ -61,8 +64,9 @@ insert into movie_tbl(movieName, releaseYear, genre, aggregateRating, numberOfUs
 values('Shawshank Redemption', 1994, 'Drama', 95, 100, 100, 'A','dummy/shawshank.jpeg', 
 'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.');
 
-insert into movie_tbl(movieName, releaseYear, genre, aggregateRating, numberOfUsersRated, numberOfCriticsRated, approvalState,imageLocation)
-values('Bahubali 2', 2017, 'Fantasy/Drama', 9.3, 100, 100, 'A','dummy/Bahubali_2.jpeg');
+insert into movie_tbl(movieName, releaseYear, genre, aggregateRating, numberOfUsersRated, numberOfCriticsRated, approvalState,imageLocation, movieDescription)
+values('Forrest Gump', 2014, 'Comedy', 92, 1002, 1200, 'A','dummy/forrestgump.jpeg', 
+'Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque.');
 
 SELECT * FROM MOVIE_TBL;
 

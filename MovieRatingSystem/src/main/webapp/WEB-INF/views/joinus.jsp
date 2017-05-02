@@ -77,19 +77,19 @@
 
 						<div class="col" style="margin-right:25%">
 						     <div class="well">
-						       <form action="/login" method="post" class="form-inline">
+						       <form action="/MovieRatingSystem/login" method="POST" class="form-inline">
 						         <p>Log in or create an account.</p>
 						         <div class="form-group form-space">
-						           <input id="username" name="username" type="text" placeholder="Username" required class="form-control">
+						           Name : <input name="name" type="text" placeholder="Username" required class="form-control">
 						         </div>
 										 <br>
 						         <div class="form-group form-space">
-						           <input id="password" name="password" type="password" placeholder="Password" required class="form-control">
+						           Password : <input name="password" type="password" placeholder="Password" required class="form-control">
 						         </div>
 										 <br>
 						         <div class="form-group form-more-space">
-						           <button id="log-in-btn" type="submit" formaction="/user" class="btn btn-default">Login</button>
-						           <button id="new-account-btn" type="submit" formaction="/signup" class="btn btn-default">Create Account</button>
+						           <button id="log-in-btn" type="submit" formaction="/MovieRatingSystem/login" class="btn btn-default">Login</button>
+						           <button id="new-account-btn" type="submit" formaction="/MovieRatingSystem/signup" class="btn btn-default">Create Account</button>
 						         </div>
 						       </form>
 						     </div>

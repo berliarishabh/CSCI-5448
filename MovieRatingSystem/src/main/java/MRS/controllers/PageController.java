@@ -27,7 +27,7 @@ public class PageController{
 	static protected User user;
 	static private PageController pc = null;
 //	protected DBProxy dbProxy;
-	
+//	
 //	public PageController(){
 ////		pc = PageControllerFactory.createPageController(user);
 //		dbProxy = new DBProxy();
@@ -85,8 +85,4 @@ public class PageController{
 		return map;
 	}
 	
-//	public List<Movie> movies(Model model)
-//	{
-//		return null;
-//	}
 }
