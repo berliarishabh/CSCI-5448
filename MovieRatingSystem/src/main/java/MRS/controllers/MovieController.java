@@ -46,18 +46,19 @@ public class MovieController {
 	
 	@RequestMapping("/movies")
 	public @ResponseBody Map<String, List<Movie>> movies(Model model, @RequestParam String genre,
-			@RequestParam String releaseYear, @RequestParam String aggregateRating)
+			@RequestParam String releaseYear, @RequestParam String aggregateRating, 
+			@RequestParam String approvalState)
 	{
-		char approvalState = 'A';
-//		if(!LoginController.isLoggedIn())
-//			return null;
-//		user = LoginController.getUser();
-//		if(user.getUserRoleId() == 4){
-//			approvalState = 'A';
-//		}
-//		else if(user.getUserRoleId() == 3){
-//			approvalState = 'A';
-//		}
+		char appState = approvalState.charAt(0);
+		if(!LoginController.isLoggedIn())
+			return null;
+		user = LoginController.getUser();
+		if(user.getUserRoleId() == 4){
+			appState = 'A';
+		}
+		else if(user.getUserRoleId() == 3){
+			appState = 'A';
+		}
 		Map<String, List<Movie>> map = new HashMap<String, List<Movie>>();
 		int rYear = 0; 
 		double aggRating = 0;
@@ -66,7 +67,7 @@ public class MovieController {
 		if(genre == "")
 			genre = "";
 		System.out.println(genre + ":" + releaseYear + ":"  + aggregateRating); 
-		List<Movie> mv = dbProxy.getMovies(genre, rYear, aggRating, approvalState);
+		List<Movie> mv = dbProxy.getMovies(genre, rYear, aggRating, appState);
 		if(aggregateRating == "L")
 			Collections.sort(mv, new CustomComparator(1));
 		else if(aggregateRating == "H")
@@ -79,8 +80,7 @@ public class MovieController {
 	@RequestMapping("/addmovie")
 	public String addMovie(Model model, @RequestParam String movieName, 
 			@RequestParam String imageLocation, @RequestParam String releaseYear, 
-			@RequestParam String aggregateRating, @RequestParam String genre, 
-			@RequestParam String movieDescription) {
+			@RequestParam String genre, @RequestParam String movieDescription) {
 
 		String retval = "joinus";	// return to the login page
 
@@ -102,7 +102,7 @@ public class MovieController {
 			else {
 				System.out.println("\nAdding Movie failed");
 			}
-			retval = "movies";		// reload the page
+			retval = "redirect:/review.html";		// reload the page
 		}
 
 		return retval;
@@ -112,7 +112,7 @@ public class MovieController {
 	public String approveMovie(Model model, @RequestParam String movieName, 
 			@RequestParam String movieIdStr ){
 		
-		String retval = "movies";
+		String retval = "redirect:/review.html";
 		
 		if (LoginController.isLoggedIn() == true) {				// check if the user is logged in
 		
@@ -126,7 +126,7 @@ public class MovieController {
 			movie.setApprovalState('A');
 			dbProxy.updateMovie(movie);
 			System.out.println("Movie Approved");
-			retval = "movies";
+			retval = "redirect:/review.html";
 		}
 		return retval;
 	}

@@ -45,6 +45,7 @@ SELECT * FROM User_tbl;
 
 DROP TABLE USER_TBL;
 
+DROP TABLE MOVIE_TBL;
 CREATE TABLE `Movie_tbl` (
   `movieId` int(11) NOT NULL AUTO_INCREMENT,
   `movieName` varchar(100) DEFAULT NULL,
@@ -65,15 +66,12 @@ values('Shawshank Redemption', 1994, 'Drama', 95, 100, 100, 'A','dummy/shawshank
 'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.');
 
 insert into movie_tbl(movieName, releaseYear, genre, aggregateRating, numberOfUsersRated, numberOfCriticsRated, approvalState,imageLocation, movieDescription)
-values('Forrest Gump', 2014, 'Comedy', 92, 1002, 1200, 'A','dummy/forrestgump.jpeg', 
+values('Forrest Gump', 2014, 'Comedy', 0, 0, 0, 'A','dummy/forrestgump.jpeg', 
 'Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque.');
 
 SELECT * FROM MOVIE_TBL;
 
-DROP TABLE MOVIE_TBL;
-
 DROP TABLE REVIEW_TBL;
-
 CREATE TABLE `Review_tbl` (
 	`reviewId` int(11) NOT NULL AUTO_INCREMENT, 
     `rating` float(5) DEFAULT NULL,
@@ -85,11 +83,8 @@ CREATE TABLE `Review_tbl` (
     
   PRIMARY KEY (`reviewId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-
 insert into review_tbl(rating, comment, movieId, flag, userId, nameUser)
 values(78,'Good Movie', 1, 0, 1, 'Rishabh');
-
-
 SELECT * FROM REVIEW_TBL;
 
 SELECT * FROM MOVIE_TBL WHERE releaseYear = null;

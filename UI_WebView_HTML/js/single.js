@@ -90,6 +90,7 @@
             + '<li><strong>Rating: </strong>'
             + '<div class=star-rating> <span style=width:' + val.rating + '%><strong class=rating></strong> </span></div> </li>'
             + '<p><b>Review:</b>  '+ val.comment + '</p>'
+						+ '<td><input type="checkbox" name="checkboxG1" id="checkboxG1" class="css-checkbox" /><label for="checkboxG1" class="css-label">Flag Review</label></td>'
 						+ '<br>'
 					);
 

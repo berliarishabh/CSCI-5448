@@ -251,14 +251,19 @@ public class DBProxy implements DBProxyInterface {
 		List<Movie> mvLs= (List<Movie>)query.getResultList();
 		Movie mv = null;
 		if(!mvLs.isEmpty())
-				mv = mvLs.get(0);
+			mv = mvLs.get(0);
 		else
 			return false;
 		double userRating = rv.getRating();
 		double currRating = mv.getAggregateRating();
 		int numOfUsers = mv.getNumberOfUsersRated();
-		int numOfCritics = mv.getNumberOfUsersRated();
-		double userWeightedRating = userRating;	// this will be weighted
+		int numOfCritics = mv.getNumberOfCriticsRated();
+		double userWeightedRating = 0;	// this will be weighted
+		
+		System.out.println("currRating is " + currRating);
+		System.out.println("numOfCritics is " + numOfCritics);
+		System.out.println("numOfUsers is " + numOfUsers);
+		System.out.println("movieName is " + mv.getMovieName());
 		
 		queried = "from User where userId = :userId";
 		query = session.createQuery(queried);
@@ -268,6 +273,7 @@ public class DBProxy implements DBProxyInterface {
 
 		double currWeightedSum = currRating * ((numOfCritics * 0.6) + (numOfUsers * 0.4));
 		System.out.println("currWeightedSum is " + currWeightedSum);
+		System.out.println("newReview is " + newReview);
 
 		if (newReview == true)			// add new review
 		{
@@ -299,8 +305,15 @@ public class DBProxy implements DBProxyInterface {
 				mv.setNumberOfCriticsRated(numOfCritics);
 			}
 		}
-		double newAggregateRating	= (currWeightedSum + userWeightedRating) / ((numOfCritics * 0.6) + (numOfUsers * 0.4));
+		double newAggregateRating = 0;
+		if((numOfCritics!=0) || (numOfUsers!=0)){
+			newAggregateRating = (currWeightedSum + userWeightedRating) / ((numOfCritics * 0.6) + (numOfUsers * 0.4));
+			System.out.println("calc newAggRating is " + newAggregateRating);
+		}
+		System.out.println("userWeightedRating is " + userWeightedRating);
 		System.out.println("newAggRating is " + newAggregateRating);
+		System.out.println("numOfCritics is " + numOfCritics);
+		System.out.println("numOfUsers is " + numOfUsers);
 		mv.setAggregateRating(newAggregateRating);
 		this.updateMovie(mv);
 		return true;

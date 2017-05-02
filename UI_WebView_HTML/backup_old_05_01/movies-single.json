@@ -1,0 +1,21 @@
+
+{
+  "movieDescription": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+  "reviewList": [
+    {
+      "reviewId": 1,
+      "rating": 78,
+      "comment": "Good Movie",
+      "flag": false,
+      "userId": 1,
+      "movieId": 1,
+      "nameUser": "Rishabh"
+    }
+  ],
+  "genre": "Drama",
+  "movieId": 1,
+  "aggregateRating": 95,
+  "releaseYear": 1994,
+  "movieName": "Shawshank Redemption",
+  "imageLocation": "dummy/shawshank.jpeg"
+}

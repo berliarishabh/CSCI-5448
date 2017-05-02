@@ -1,5 +1,6 @@
 package MRS.controllers;
 
+import MRS.Model.Movie;
 import MRS.Model.Review;
 import MRS.Common.*;
 import MRS.controllers.LoginController;
@@ -25,7 +26,7 @@ public class ReviewController {
 	// add a review by the user
 	@RequestMapping("/addreview")
 	public String addReview(Model model, @RequestParam String ratingStr, 
-			@RequestParam String comment, @RequestParam String movieIdStr) {
+			@RequestParam String comment, @RequestParam String movieName) {
 
 		String retval = "joinus";	// return to the login page
 
@@ -33,8 +34,11 @@ public class ReviewController {
 
 			double rating 	= Double.parseDouble(ratingStr);
 			int userId	 	= LoginController.getUser().getUserId();
-			int movieId		= Integer.parseInt(movieIdStr);
+//			int movieId		= Integer.parseInt(movieIdStr);
 			String nameUser = LoginController.getUser().getName();
+			
+			Movie mv = dbProxy.getMovie(movieName);
+			int movieId = mv.getMovieId();
 			
 			// check if the user has already reviewed
 			List<Review> reviewList = dbProxy.getReviews(movieId, userId);
@@ -65,7 +69,7 @@ public class ReviewController {
 
 	// delete users own review
 	@RequestMapping("/deletereview")
-	public String deleteReview(Model model, @RequestParam String movieIdStr) {
+	public String deleteReview(Model model, @RequestParam String movieName) {
 
 		String retval = "joinus";	// return to the same page
 
@@ -73,7 +77,8 @@ public class ReviewController {
 		
 		if (LoginController.isLoggedIn() == true) {				// check if the user is logged in
 		
-			int movieId = Integer.parseInt(movieIdStr);
+			Movie mv = dbProxy.getMovie(movieName);
+			int movieId = mv.getMovieId();
 			int userId = LoginController.getUser().getUserId();
 
 			// check if the user has already reviewed

@@ -51,7 +51,7 @@
 			}
 
 			// Add your API endpoint instead of movies.json file
-			loadJSON('http://localhost:8080/MovieRatingSystem/movies?genre=&releaseYear=&aggregateRating=', function(response) {
+			  loadJSON('http://localhost:8080/MovieRatingSystem/movies?genre=&releaseYear=&aggregateRating=&approvalState=', function(response) {
 				//loadJSON('movies.json', function(response) {
 
 				// Do Something with the response e.g.
@@ -122,11 +122,12 @@ function loadJSON(endpoint, callback) {
 	xobj.send(null);
 }
 
-loadJSON(querystring, function(response) {
+//loadJSON('movies-search.json', function(response) {
+	loadJSON(querystring, function(response) {
 
 // Do Something with the response e.g.
 var object = JSON.parse(response);
-//console.log(object)
+console.log(object)
 
 // Construct an array from the JSON object
 // val is going to represent each movie object
@@ -144,7 +145,7 @@ $.each(object["movieList"], function(key, val) {
 		+ '<figure class="movie-poster">' + '<img src= ' + val.imageLocation + '></figure>'
 		+ '<div class=year>' + 'Year: ' + val.releaseYear + '</div>'
 		+ '<div class=genre>' + 'Genre: ' + val.genre + '</div>'
-		+ '<div class=star-rating> <span style=width:' + val.aggregateRating + '><strong class="rating"></strong> </span></div>'
+		+ '<div class=star-rating> <span style=width:' + val.aggregateRating + '%><strong class="rating"></strong> </span></div>'
 		+ '</div>'
 	);
 });
@@ -157,11 +158,6 @@ $('<div>', {
 	html: items.join('')
 }).prependTo("div.movie-list");
 });
-// var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
-// xmlhttp.open("POST", querystring);
-// xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-// xmlhttp.send(JSON.stringify(objVal));
-// console.log(objVal);
 
 });
 
@@ -183,6 +179,7 @@ function encodeQueryData(data) {
     function doalert(obj) {
         console.log(obj.innerHTML);
 				var movieName = obj.innerHTML;
+				localStorage.setItem('movieName', movieName)
 				var string = 'http://localhost:8080/MovieRatingSystem/singleMovie?movieName='+ movieName;
 				alert(string);
 				localStorage.setItem('url', string)
