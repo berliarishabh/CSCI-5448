@@ -51,7 +51,7 @@
 			}
 
 			// Add your API endpoint instead of movies.json file
-		//	loadJSON('http://localhost:8080/MovieRatingSystem/movies?movieName&releaseYear&aggregateRating', function(response) {
+		//	loadJSON('http://localhost:8080/MovieRatingSystem/movies?genre=&releaseYear=&aggregateRating=', function(response) {
 				loadJSON('movies.json', function(response) {
 
 				// Do Something with the response e.g.
@@ -70,7 +70,7 @@
 					items.push(
 						'<div class=movie> '
 						+ '<div class="movie-id" id='+ val.movieId + '> </div>'
-						+ '<div class="movie-title">' + '<a href=single.html>' + val.movieName + '</a></div>'
+						+ '<ul class="movie-title">' + '<a href="single.html" onclick="doalert(this);">' + val.movieName + '</a></ul>'
 						+ '<figure class="movie-poster">' + '<img src= ' + val.imageLocation + '></figure>'
 						+ '<div class=year>' + 'Year: ' + val.releaseYear + '</div>'
 						+ '<div class=genre>' + 'Genre: ' + val.genre + '</div>'
@@ -95,3 +95,40 @@
 	});
 
 })(jQuery, document, window);
+
+//Create the Selection to a JSON object array
+$('#go').on("click", function() {
+var objVal = {};
+$('select').each(function() {
+var arr = $(':selected', this).map(function() {
+	return this.value;
+}).get();
+objVal[$(this).attr("name")] = arr;
+});
+//Parse the String
+var string = encodeQueryData(objVal);
+var querystring = 'http://localhost:8080/MovieRatingSystem/movies?' + string;
+console.log(querystring);
+
+//Post Req to endpoint
+var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+xmlhttp.open("POST", querystring);
+xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+xmlhttp.send(JSON.stringify(objVal));
+console.log(objVal);
+
+});
+
+//JSON to URL String
+function encodeQueryData(data) {
+   let ret = [];
+   for (let d in data)
+     ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
+   return ret.join('&');
+}
+
+//TEST
+// var data = { 'first name': ['George'], 'last name': ['Jetson'], 'age': [110] };
+// var querystring = encodeQueryData(data);
+// console.log(data);
+// console.log(querystring);
