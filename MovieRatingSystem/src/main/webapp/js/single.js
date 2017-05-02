@@ -143,7 +143,7 @@ function myFunction() {
 		var movieId = localStorage.getItem('movieId');
 		var userId = localStorage.getItem('userId');
 
-		var string = 'http://localhost:8080/MovieRatingSystem/reviews?';
+		var string = 'http://localhost:8080/MovieRatingSystem/flagreview?';
 		var queryString = string+'flagStr='+flag+'&movieIdStr='+movieId+'&userIdStr='+userId;
 		alert(queryString);
 		var xmlHttp = new XMLHttpRequest();
